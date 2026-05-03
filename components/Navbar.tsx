@@ -67,7 +67,7 @@ export default function Navbar() {
           {[
             { label: "Solution", href: "#solution" },
             { label: "Demo", href: "#demo" },
-            { label: "About", href: "#about" },
+            { label: "Team", href: "#team" },
           ].map((link) => (
             <a
               key={link.href}
@@ -113,7 +113,7 @@ export default function Navbar() {
               el.style.color = "var(--color-gold)";
             }}
           >
-            Join the Assembly
+            Request AGORA
           </a>
         </div>
       </div>

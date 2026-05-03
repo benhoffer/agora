@@ -57,7 +57,7 @@ export default function Hero() {
             textTransform: "uppercase",
           }}
         >
-          Governance Infrastructure
+          Direct Democracy Infrastructure
         </p>
 
         {/* Main headline */}
@@ -83,11 +83,23 @@ export default function Hero() {
             fontWeight: 300,
             color: "var(--color-text)",
             letterSpacing: "0.05em",
-            marginBottom: "3rem",
+            marginBottom: "1rem",
             opacity: 0.9,
           }}
         >
-          Gold Standard Direct Democracy Infrastructure.
+          Gold-standard direct democracy infrastructure.
+        </p>
+        <p
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "clamp(0.9rem, 1.4vw, 1rem)",
+            color: "var(--color-muted)",
+            lineHeight: 1.7,
+            maxWidth: "640px",
+            margin: "0 auto 3rem",
+          }}
+        >
+          Local governments deploy AGORA so citizens can read, write, and ratify the policies that shape their lives — securely, on a server they own.
         </p>
 
         {/* CTA Buttons */}
@@ -125,7 +137,7 @@ export default function Hero() {
               el.style.transform = "translateY(0)";
             }}
           >
-            Try AGORA
+            Watch the Demo
           </a>
 
           <a
@@ -157,7 +169,7 @@ export default function Hero() {
               el.style.transform = "translateY(0)";
             }}
           >
-            Request a Demo
+            Request AGORA
           </a>
         </div>
       </div>

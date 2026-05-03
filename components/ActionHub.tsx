@@ -1,34 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-type Persona =
-  | "institution"
-  | "company"
-  | "investor"
-  | "citizen"
-  | null;
+type Persona = "citizen" | "government" | null;
 
-const PERSONAS: { id: Persona; label: string; description: string }[] = [
-  {
-    id: "institution",
-    label: "A Public Institution",
-    description: "City council, state agency, school district, or other government body",
-  },
-  {
-    id: "company",
-    label: "A Private Company / Organization",
-    description: "Corporation, nonprofit, union, or professional association",
-  },
-  {
-    id: "investor",
-    label: "An Investment Group",
-    description: "VC, family office, angel network, or institutional fund",
-  },
+const PERSONAS: { id: Exclude<Persona, null>; label: string; description: string }[] = [
   {
     id: "citizen",
-    label: "An Individual Citizen",
-    description: "Someone who believes democracy deserves better tools",
+    label: "I'm a Citizen",
+    description: "Request AGORA in your municipality.",
+  },
+  {
+    id: "government",
+    label: "I'm a Government Representative",
+    description: "Request a demo or RFI for your jurisdiction.",
   },
 ];
 
@@ -92,10 +77,12 @@ function SelectGroup({
   label,
   name,
   options,
+  required = false,
 }: {
   label: string;
   name: string;
   options: string[];
+  required?: boolean;
 }) {
   const [focused, setFocused] = useState(false);
   return (
@@ -103,11 +90,8 @@ function SelectGroup({
       <label style={labelStyle()}>{label}</label>
       <select
         name={name}
-        style={{
-          ...inputStyle(focused),
-          appearance: "none",
-          cursor: "pointer",
-        }}
+        required={required}
+        style={{ ...inputStyle(focused), appearance: "none", cursor: "pointer" }}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
       >
@@ -130,11 +114,7 @@ function TextAreaGroup({ label, name }: { label: string; name: string }) {
       <textarea
         name={name}
         rows={4}
-        style={{
-          ...inputStyle(focused),
-          resize: "vertical",
-          minHeight: "100px",
-        }}
+        style={{ ...inputStyle(focused), resize: "vertical", minHeight: "100px" }}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
       />
@@ -142,95 +122,14 @@ function TextAreaGroup({ label, name }: { label: string; name: string }) {
   );
 }
 
-function InstitutionForm() {
-  return (
-    <div
-      style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }}
-    >
-      <FieldGroup label="Your Name" name="name" required />
-      <FieldGroup label="Title / Role" name="title" required />
-      <FieldGroup label="Jurisdiction" name="jurisdiction" placeholder="City of Portland, OR" required />
-      <SelectGroup
-        label="Jurisdiction Size"
-        name="size"
-        options={["Under 10,000", "10,000–50,000", "50,000–250,000", "250,000–1M", "Over 1M"]}
-      />
-      <SelectGroup
-        label="Governance Structure"
-        name="structure"
-        options={["City Council", "County Board", "State Agency", "School District", "Special District", "Other"]}
-      />
-      <FieldGroup label="Email" name="email" type="email" required />
-      <div style={{ gridColumn: "1 / -1" }}>
-        <TextAreaGroup label="Tell us about your governance challenge" name="message" />
-      </div>
-    </div>
-  );
-}
-
-function CompanyForm() {
-  return (
-    <div
-      style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }}
-    >
-      <FieldGroup label="Your Name" name="name" required />
-      <FieldGroup label="Company / Organization" name="company" required />
-      <FieldGroup label="Your Role" name="role" required />
-      <SelectGroup
-        label="Organization Size"
-        name="size"
-        options={["1–10", "11–50", "51–250", "251–1,000", "1,000+"]}
-      />
-      <FieldGroup label="Email" name="email" type="email" required />
-      <SelectGroup
-        label="Primary Use Case"
-        name="usecase"
-        options={["Corporate Governance", "Internal Policy", "Board Oversight", "Union / Association", "Nonprofit Compliance", "Other"]}
-      />
-      <div style={{ gridColumn: "1 / -1" }}>
-        <TextAreaGroup label="Describe your governance needs" name="message" />
-      </div>
-    </div>
-  );
-}
-
-function InvestorForm() {
-  return (
-    <div
-      style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }}
-    >
-      <FieldGroup label="Your Name" name="name" required />
-      <FieldGroup label="Fund / Group Name" name="fund" required />
-      <FieldGroup label="Email" name="email" type="email" required />
-      <FieldGroup label="Phone (Optional)" name="phone" type="tel" />
-      <SelectGroup
-        label="Fund Size"
-        name="fundsize"
-        options={["Pre-fund / Angel", "Under $10M", "$10M–$100M", "$100M–$500M", "Over $500M"]}
-      />
-      <SelectGroup
-        label="Investment Stage Focus"
-        name="stage"
-        options={["Pre-seed", "Seed", "Series A", "Growth", "Multi-stage"]}
-      />
-      <div style={{ gridColumn: "1 / -1" }}>
-        <TextAreaGroup label="Tell us why AGORA interests you" name="message" />
-      </div>
-    </div>
-  );
-}
-
 function CitizenForm() {
   return (
-    <div
-      style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }}
-    >
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }}>
       <FieldGroup label="Your Name" name="name" required />
       <FieldGroup label="Email" name="email" type="email" required />
-      <div style={{ gridColumn: "1 / -1" }}>
-        <FieldGroup label="City / State" name="location" placeholder="Portland, OR" />
-      </div>
-      {/* Letter checkbox */}
+      <FieldGroup label="City / Town, State" name="location" placeholder="Cambridge, MA" required />
+      <FieldGroup label="Your Role in the Community (Optional)" name="role" placeholder="resident, town meeting member, association chair…" />
+
       <div style={{ gridColumn: "1 / -1" }}>
         <label
           style={{
@@ -243,6 +142,7 @@ function CitizenForm() {
           <input
             type="checkbox"
             name="letter"
+            value="yes"
             style={{
               marginTop: "3px",
               accentColor: "var(--color-gold)",
@@ -260,13 +160,57 @@ function CitizenForm() {
               opacity: 0.85,
             }}
           >
-            Send an AGORA-drafted letter to my local representatives demanding
-            better civic infrastructure.
+            Send an AGORA-drafted letter on my behalf to my select board / city council demanding adoption.
           </span>
         </label>
       </div>
+
       <div style={{ gridColumn: "1 / -1" }}>
-        <TextAreaGroup label="Anything else you want us to know?" name="message" />
+        <TextAreaGroup label="Message (Optional)" name="message" />
+      </div>
+    </div>
+  );
+}
+
+function GovernmentForm() {
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }}>
+      <FieldGroup label="Your Name" name="name" required />
+      <FieldGroup label="Title / Role" name="title" placeholder="Town Manager, Selectboard Chair, IT Director…" required />
+      <FieldGroup label="Municipality / Jurisdiction" name="jurisdiction" placeholder="Town of Concord, MA" required />
+      <SelectGroup
+        label="Population Size"
+        name="population"
+        options={["Under 5,000", "5,000–25,000", "25,000–100,000", "100,000–500,000", "Over 500,000"]}
+      />
+      <SelectGroup
+        label="Government Structure"
+        name="structure"
+        options={[
+          "Town Meeting",
+          "Selectboard",
+          "City Council–Mayor",
+          "City Council–Manager",
+          "County",
+          "State Agency",
+          "University",
+          "Other",
+        ]}
+      />
+      <FieldGroup label="Email" name="email" type="email" required />
+      <FieldGroup label="Phone (Optional)" name="phone" type="tel" />
+      <SelectGroup
+        label="Interest"
+        name="interest"
+        options={[
+          "Pilot ($9,500 / 6 months)",
+          "Annual deployment ($50,000)",
+          "RFI",
+          "General inquiry",
+        ]}
+      />
+      <div style={{ gridColumn: "1 / -1" }}>
+        <TextAreaGroup label="Governance context / message" name="message" />
       </div>
     </div>
   );
@@ -277,6 +221,18 @@ export default function ActionHub() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<Persona>).detail;
+      if (detail === "citizen" || detail === "government") {
+        setPersona(detail);
+        setSubmitted(false);
+      }
+    };
+    window.addEventListener("agora:set-persona", handler);
+    return () => window.removeEventListener("agora:set-persona", handler);
+  }, []);
 
   const handleSubmit = async (e: { preventDefault(): void; currentTarget: HTMLFormElement }) => {
     e.preventDefault();
@@ -316,7 +272,6 @@ export default function ActionHub() {
         overflow: "hidden",
       }}
     >
-      {/* Background */}
       <div
         style={{
           position: "absolute",
@@ -338,7 +293,6 @@ export default function ActionHub() {
           margin: "0 auto",
         }}
       >
-        {/* Section label */}
         <p
           style={{
             fontFamily: "var(--font-sans)",
@@ -349,7 +303,7 @@ export default function ActionHub() {
             marginBottom: "1.5rem",
           }}
         >
-          Get Involved
+          Request AGORA
         </p>
 
         <h2
@@ -362,7 +316,7 @@ export default function ActionHub() {
             lineHeight: 1.2,
           }}
         >
-          Join the Assembly.
+          Bring AGORA to your community.
         </h2>
         <p
           style={{
@@ -373,14 +327,13 @@ export default function ActionHub() {
             marginBottom: "3rem",
           }}
         >
-          Tell us who you are. We&apos;ll take it from there.
+          Two paths in. Citizens can demand AGORA in their municipality. Government representatives can request a demo or RFI.
         </p>
 
-        {/* Persona selector */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
             gap: "1rem",
             marginBottom: "3rem",
           }}
@@ -393,7 +346,7 @@ export default function ActionHub() {
                 setSubmitted(false);
               }}
               style={{
-                padding: "1.5rem 1rem",
+                padding: "1.5rem 1.25rem",
                 background:
                   persona === p.id
                     ? "rgba(201,168,76,0.12)"
@@ -404,11 +357,9 @@ export default function ActionHub() {
                     : "rgba(201,168,76,0.15)"
                 }`,
                 color:
-                  persona === p.id
-                    ? "var(--color-gold)"
-                    : "var(--color-muted)",
+                  persona === p.id ? "var(--color-gold)" : "var(--color-muted)",
                 fontFamily: "var(--font-sans)",
-                fontSize: "0.8rem",
+                fontSize: "0.85rem",
                 fontWeight: persona === p.id ? 500 : 400,
                 letterSpacing: "0.03em",
                 lineHeight: 1.4,
@@ -423,8 +374,8 @@ export default function ActionHub() {
               <span
                 style={{
                   display: "block",
-                  fontSize: "0.7rem",
-                  opacity: 0.6,
+                  fontSize: "0.72rem",
+                  opacity: 0.7,
                   lineHeight: 1.5,
                   fontWeight: 400,
                   color: "var(--color-muted)",
@@ -436,15 +387,12 @@ export default function ActionHub() {
           ))}
         </div>
 
-        {/* Form */}
         {persona && !submitted && (
           <div className="glass fade-slide-in" style={{ padding: "2.5rem" }}>
             <form onSubmit={handleSubmit}>
               <div style={{ marginBottom: "2rem" }}>
-                {persona === "institution" && <InstitutionForm />}
-                {persona === "company" && <CompanyForm />}
-                {persona === "investor" && <InvestorForm />}
                 {persona === "citizen" && <CitizenForm />}
+                {persona === "government" && <GovernmentForm />}
               </div>
 
               <div>
@@ -498,7 +446,6 @@ export default function ActionHub() {
           </div>
         )}
 
-        {/* Success state */}
         {submitted && (
           <div
             className="glass fade-slide-in"
@@ -533,12 +480,11 @@ export default function ActionHub() {
                 lineHeight: 1.7,
               }}
             >
-              Thank you for reaching out. We&apos;ll be in contact shortly.
+              Thank you for reaching out. We&apos;ll be in touch within 2 business days.
             </p>
           </div>
         )}
 
-        {/* Footer note */}
         <p
           style={{
             fontFamily: "var(--font-sans)",
@@ -549,8 +495,7 @@ export default function ActionHub() {
             lineHeight: 1.6,
           }}
         >
-          Your information is never shared or sold. AGORA is a sovereign,
-          privacy-first organization.
+          Your information is never shared or sold. AGORA is a sovereign, privacy-first organization.
         </p>
       </div>
     </section>

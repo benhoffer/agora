@@ -99,23 +99,13 @@ export default function About() {
           }}
         >
           <p style={{ marginBottom: "1.5rem" }}>
-            AGORA is a small tight-knit team bootstrapping to
-            deploy our first round of contracts in 2026. The cause of democracy
-            is urgent, and we are building the tools to save it.
+            The sole valid objection to direct democracy is that it is unwieldy — that participatory decision-making is too slow to compete with representative or authoritarian alternatives. AGORA is built to answer that objection. By making structured deliberation efficient and policy legible at every reading level, and by allowing organizations to nest such that decisions and legal inheritance flow cleanly between scales of governance, AGORA eliminates the operational deficiency that has historically made direct democracy impractical at scale.
           </p>
           <p style={{ marginBottom: "1.5rem" }}>
-            Whether you are in the public sector, a private company, a
-            capitalist, or an everyday citizen—you can help. Every institution
-            that adopts better governance infrastructure strengthens the
-            collective fabric of our democracy.
+            We deploy on a single municipal server running on commodity hardware. In sovereign mode, all language-model inference runs locally via Ollama; no citizen data, deliberation content, or query traffic leaves the municipality. The local-inference posture also avoids the carbon footprint of cloud-scale LLM serving — gold-standard infrastructure with zero-extraction ecological responsibility.
           </p>
           <p>
-            We believe that access to clear, actionable civic information is not
-            a luxury. It is a prerequisite for a real and functioning democracy. AGORA
-            exists to make that access universal.
-          </p>
-           <p>
-            Read more about direct democracy, electoral systems, and voting crypotgraphy here.
+            AGORA is a small team bootstrapping toward our first round of municipal contracts in New England in 2026. The cause is urgent. We are building the tools.
           </p>
         </div>
 
@@ -146,7 +136,7 @@ export default function About() {
             el.style.color = "var(--color-gold)";
           }}
         >
-          Join the Assembly
+          Request AGORA
         </a>
       </div>
     </section>

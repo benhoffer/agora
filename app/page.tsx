@@ -2,8 +2,9 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Problem from "@/components/Problem";
 import Solution from "@/components/Solution";
-import Demo from "@/components/Demo";
 import About from "@/components/About";
+import Demo from "@/components/Demo";
+import Team from "@/components/Team";
 import ActionHub from "@/components/ActionHub";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Solution />
       <Demo />
       <About />
+      <Team />
       <ActionHub />
 
       {/* Footer */}

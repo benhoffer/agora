@@ -20,8 +20,8 @@ const features = [
         <polyline points="10 9 9 9 8 9" />
       </svg>
     ),
-    title: "Democratized Policy",
-    body: "No more legalese. We give your members the tools to understand and operate at a high level in the policy space—translating complex legislation into plain language, automatically.",
+    title: "Read & Compare",
+    body: "Translate any policy across reading levels — 5th grade, high school, graduate/legal. Ask questions in natural language and get cited answers grounded in the actual policy text. Side-by-side, color-coded diffs between any two policies, with pre-publication conflict checks against inherited law.",
   },
   {
     icon: (
@@ -47,8 +47,8 @@ const features = [
         <line x1="20" y1="15" x2="22" y2="15" />
       </svg>
     ),
-    title: "Cutting-Edge Tech",
-    body: "Powered by locally-secured modern servers, utilizing advanced RAG (Retrieval-Augmented Generation) and LLMs for unparalleled policy analysis. The state of the art, deployed for democracy.",
+    title: "Deliberate & Petition",
+    body: "Threaded comments anchored to specific policy clauses. Identity-verified participation — no bots. Multi-factor petition signatures (email, SMS, government-ID) that meet state ballot-initiative standards, rate-limited and cryptographically auditable.",
   },
   {
     icon: (
@@ -65,8 +65,8 @@ const features = [
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
       </svg>
     ),
-    title: "Sovereign & Secure",
-    body: "Bringing AI to everyday people without relying on untrustworthy, extractive multinational corporations. Your data stays local. Your governance stays yours.",
+    title: "Govern at Every Scale",
+    body: "Nested organizations with automatic law inheritance — neighborhoods inside towns, towns inside states. Hash-chained, tamper-evident audit log. One-click FOIA-grade export. Role-gated administration across owner, admin, moderator, member, and viewer tiers.",
   },
 ];
 
@@ -129,7 +129,7 @@ export default function Solution() {
             maxWidth: "700px",
           }}
         >
-          Rebuilding the Infrastructure of Consensus.
+          The infrastructure of deep democracy.
         </h2>
 
         {/* Subheadline */}
@@ -143,9 +143,7 @@ export default function Solution() {
             marginBottom: "5rem",
           }}
         >
-          We build efficient, secure, and collaborative governance infrastructure
-          for any institution—from city councils and corporate boards to
-          neighborhood unions and book clubs.
+          Six tightly integrated subsystems that make participatory governance feasible at scale: read, compare, deliberate, petition, audit, and export — all on one platform, deployed locally to a server the municipality owns.
         </p>
 
         {/* Divider */}
@@ -217,6 +215,20 @@ export default function Solution() {
             </div>
           ))}
         </div>
+
+        <p
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "0.85rem",
+            color: "var(--color-muted)",
+            lineHeight: 1.7,
+            marginTop: "3rem",
+            textAlign: "center",
+            opacity: 0.8,
+          }}
+        >
+          Sovereign local deployment. All civic data stays in the municipality&apos;s database. Local LLM inference via Ollama; optional Claude API hybrid mode.
+        </p>
       </div>
     </section>
   );

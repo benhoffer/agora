@@ -3,10 +3,13 @@ import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
 const PERSONA_LABELS: Record<string, string> = {
-  institution: "Public Institution",
-  company: "Private Company / Organization",
-  investor: "Investment Group",
-  citizen: "Individual Citizen",
+  citizen: "Citizen — Municipality Request",
+  government: "Government — Demo / RFI",
+};
+
+const PERSONA_SUBJECT_PREFIX: Record<string, string> = {
+  citizen: "[Citizen request]",
+  government: "[Gov RFI/Demo]",
 };
 
 function buildEmailHtml(
@@ -105,7 +108,7 @@ export async function POST(req: NextRequest) {
     const { error: emailError } = await resend.emails.send({
       from: "AGORA <onboarding@resend.dev>",
       to: process.env.CONTACT_EMAIL!,
-      subject: `AGORA Inquiry — ${personaLabel}`,
+      subject: `${PERSONA_SUBJECT_PREFIX[persona] ?? "[AGORA]"} ${personaLabel}`,
       html: buildEmailHtml(persona, fields),
     });
 
