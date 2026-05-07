@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Problem from "@/components/Problem";
 import Solution from "@/components/Solution";
-import About from "@/components/About";
+// import About from "@/components/About";
 import Demo from "@/components/Demo";
 import Team from "@/components/Team";
 import ActionHub from "@/components/ActionHub";
@@ -15,7 +15,7 @@ export default function Home() {
       <Problem />
       <Solution />
       <Demo />
-      <About />
+      {/* <About /> */}
       <Team />
       <ActionHub />
 

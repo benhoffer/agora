@@ -4,16 +4,16 @@ const TEAM = [
     role: "Project Lead",
   },
   {
+    name: "Margaux Harrington",
+    role: "Outreach & Logistics",
+  },
+  {
     name: "Andrey Belyatov",
     role: "Advisor — Cybersecurity",
   },
   {
     name: "Justin Phillips, PhD",
     role: "Advisor — Quantitative Political Science",
-  },
-  {
-    name: "Jeffrey Sachs, PhD",
-    role: "Advisor — Development Economics",
   },
   {
     name: "Graham Dove, PhD",
@@ -51,22 +51,10 @@ export default function Team() {
             textAlign: "center",
           }}
         >
-          Team
+          Expertise & Movement
         </p>
 
-        <h2
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.8rem, 4vw, 2.6rem)",
-            fontWeight: 400,
-            color: "var(--color-text)",
-            lineHeight: 1.2,
-            marginBottom: "4rem",
-            textAlign: "center",
-          }}
-        >
-          Built by practitioners and advised by scholars.
-        </h2>
+        <div style={{ marginBottom: "4rem" }} />
 
         <div
           style={{

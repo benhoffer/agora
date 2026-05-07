@@ -143,7 +143,7 @@ export default function Solution() {
             marginBottom: "5rem",
           }}
         >
-          Six tightly integrated subsystems that make participatory governance feasible at scale: read, compare, deliberate, petition, audit, and export — all on one platform, deployed locally to a server the municipality owns.
+          A secure, community-owned platform for proposals, petitions, discussions, participatory research, and understanding — in short, sophisticated direct-democratic governance. Government-grade security with audit and export features for ease of adoption.
         </p>
 
         {/* Divider */}

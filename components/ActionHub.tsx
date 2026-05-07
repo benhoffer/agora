@@ -202,12 +202,7 @@ function GovernmentForm() {
       <SelectGroup
         label="Interest"
         name="interest"
-        options={[
-          "Pilot ($9,500 / 6 months)",
-          "Annual deployment ($50,000)",
-          "RFI",
-          "General inquiry",
-        ]}
+        options={["Pilot (6 months)", "RFI", "General inquiry"]}
       />
       <div style={{ gridColumn: "1 / -1" }}>
         <TextAreaGroup label="Governance context / message" name="message" />
@@ -312,23 +307,12 @@ export default function ActionHub() {
             fontSize: "clamp(2rem, 5vw, 3.2rem)",
             fontWeight: 400,
             color: "var(--color-text)",
-            marginBottom: "0.75rem",
+            marginBottom: "3rem",
             lineHeight: 1.2,
           }}
         >
           Bring AGORA to your community.
         </h2>
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "0.95rem",
-            color: "var(--color-muted)",
-            lineHeight: 1.7,
-            marginBottom: "3rem",
-          }}
-        >
-          Two paths in. Citizens can demand AGORA in their municipality. Government representatives can request a demo or RFI.
-        </p>
 
         <div
           style={{

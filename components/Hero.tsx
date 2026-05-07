@@ -57,7 +57,7 @@ export default function Hero() {
             textTransform: "uppercase",
           }}
         >
-          Direct Democracy Infrastructure
+          Deliberative, direct, deep democracy.
         </p>
 
         {/* Main headline */}
@@ -83,23 +83,11 @@ export default function Hero() {
             fontWeight: 300,
             color: "var(--color-text)",
             letterSpacing: "0.05em",
-            marginBottom: "1rem",
+            marginBottom: "3rem",
             opacity: 0.9,
           }}
         >
-          Gold-standard direct democracy infrastructure.
-        </p>
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "clamp(0.9rem, 1.4vw, 1rem)",
-            color: "var(--color-muted)",
-            lineHeight: 1.7,
-            maxWidth: "640px",
-            margin: "0 auto 3rem",
-          }}
-        >
-          Local governments deploy AGORA so citizens can read, write, and ratify the policies that shape their lives — securely, on a server they own.
+          Gold standard civic infrastructure for democracy.
         </p>
 
         {/* CTA Buttons */}

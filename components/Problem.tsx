@@ -53,7 +53,7 @@ export default function Problem() {
               marginBottom: "2rem",
             }}
           >
-            Citizens are offered representation, not authorship.
+            Democracy is backsliding — and technology is making it worse.
           </p>
 
           <div
@@ -66,13 +66,10 @@ export default function Problem() {
             }}
           >
             <p style={{ marginBottom: "1.25rem" }}>
-              Legislation that shapes daily life runs to hundreds of pages of dense legal language. Few have the time to read it; fewer still have the expertise to interpret it. Without that foundation, citizens cannot meaningfully evaluate the substance of the representatives they endorse — and policy-based politics is foreclosed from public reach.
-            </p>
-            <p style={{ marginBottom: "1.25rem" }}>
-              In its absence, political engagement collapses into evaluating <em>who</em> rather than <em>what</em>. That is no longer politics. It is gossip.
+              Democracies are eroding around the world while authoritarian regimes consolidate power. New technology is being deployed for surveillance and suppression rather than autonomy.
             </p>
             <p>
-              The core challenge is not a lack of citizen capacity. It is a missing civic infrastructure — no accessible mechanism exists to translate local public will into rigorously contested, structurally sound legislative proposals.
+              Advances in technology should improve our lives. Instead, they are tearing the fabric of society apart. We need civic infrastructure that turns these tools toward the protection of communities — not their erosion.
             </p>
           </div>
         </blockquote>
