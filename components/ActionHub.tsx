@@ -207,7 +207,7 @@ function GovernmentForm() {
       <SelectGroup
         label="Interest"
         name="interest"
-        options={["Pilot (6 months)", "RFI", "General inquiry"]}
+        options={["Schedule a demo", "Request a pilot / MOU", "General inquiry"]}
       />
       <div style={{ gridColumn: "1 / -1" }}>
         <TextAreaGroup label="Governance context / message" name="message" />
