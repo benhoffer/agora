@@ -5,11 +5,13 @@ import { NextRequest, NextResponse } from "next/server";
 const PERSONA_LABELS: Record<string, string> = {
   citizen: "Citizen — Municipality Request",
   government: "Government — Demo / RFI",
+  ngo: "NGO — Request AGORA",
 };
 
 const PERSONA_SUBJECT_PREFIX: Record<string, string> = {
   citizen: "[Citizen request]",
   government: "[Gov RFI/Demo]",
+  ngo: "[NGO request]",
 };
 
 function buildEmailHtml(

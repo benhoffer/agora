@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-type Persona = "citizen" | "government" | null;
+type Persona = "citizen" | "government" | "ngo" | null;
 
 const PERSONAS: { id: Exclude<Persona, null>; label: string; description: string }[] = [
   {
@@ -14,6 +14,11 @@ const PERSONAS: { id: Exclude<Persona, null>; label: string; description: string
     id: "government",
     label: "I'm a Government Representative",
     description: "Request a demo or RFI for your jurisdiction.",
+  },
+  {
+    id: "ngo",
+    label: "I Represent an NGO",
+    description: "Explore how AGORA supports civic and advocacy organizations.",
   },
 ];
 
@@ -211,6 +216,39 @@ function GovernmentForm() {
   );
 }
 
+function NgoForm() {
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }}>
+      <FieldGroup label="Your Name" name="name" required />
+      <FieldGroup label="Title / Role" name="title" placeholder="Executive Director, Policy Lead…" required />
+      <FieldGroup label="Organization Name" name="organization" required />
+      <SelectGroup
+        label="Organization Type"
+        name="orgtype"
+        options={[
+          "Civic advocacy",
+          "Environmental",
+          "Human rights",
+          "Community organizing",
+          "Academic / research",
+          "International development",
+          "Other",
+        ]}
+      />
+      <FieldGroup label="Email" name="email" type="email" required />
+      <FieldGroup label="Phone (Optional)" name="phone" type="tel" />
+      <SelectGroup
+        label="Interest"
+        name="interest"
+        options={["Pilot", "Partnership", "RFI", "General inquiry"]}
+      />
+      <div style={{ gridColumn: "1 / -1" }}>
+        <TextAreaGroup label="Tell us about your organization and how you'd use AGORA" name="message" />
+      </div>
+    </div>
+  );
+}
+
 export default function ActionHub() {
   const [persona, setPersona] = useState<Persona>(null);
   const [submitted, setSubmitted] = useState(false);
@@ -377,6 +415,7 @@ export default function ActionHub() {
               <div style={{ marginBottom: "2rem" }}>
                 {persona === "citizen" && <CitizenForm />}
                 {persona === "government" && <GovernmentForm />}
+                {persona === "ngo" && <NgoForm />}
               </div>
 
               <div>
