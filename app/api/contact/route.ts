@@ -1,4 +1,5 @@
-import { createClient } from "@supabase/supabase-js";
+import { ConvexHttpClient } from "convex/browser";
+import { api } from "@/convex/_generated/api";
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -85,23 +86,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Store in Supabase
-    const supabase = createClient(
-      process.env.SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    );
-
-    const { error: dbError } = await supabase
-      .from("submissions")
-      .insert({ persona, fields });
-
-    if (dbError) {
-      console.error("Supabase insert error:", dbError);
-      return NextResponse.json(
-        { error: "Failed to save submission." },
-        { status: 500 }
-      );
-    }
+    // 1. Store in Convex
+    const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
+    await convex.mutation(api.submissions.create, { persona, fields });
 
     // 2. Send notification email via Resend
     const resend = new Resend(process.env.RESEND_API_KEY);
@@ -115,7 +102,7 @@ export async function POST(req: NextRequest) {
     });
 
     if (emailError) {
-      // Submission is already saved — log email failure but don't fail the request
+      // Submission already saved — log email failure but don't fail the request
       console.error("Resend email error:", emailError);
     }
 
