@@ -3,11 +3,11 @@
 function ctaBase(): React.CSSProperties {
   return {
     display: "inline-block",
-    padding: "0.875rem 2.25rem",
+    padding: "0.85rem 2.1rem",
     fontFamily: "var(--font-sans)",
-    fontSize: "0.8rem",
+    fontSize: "0.76rem",
     fontWeight: 500,
-    letterSpacing: "0.15em",
+    letterSpacing: "0.14em",
     textTransform: "uppercase",
     textDecoration: "none",
     transition: "background 0.2s, color 0.2s, transform 0.15s, border-color 0.2s",
@@ -25,58 +25,18 @@ function routeTo(persona: "citizen" | "government") {
 
 export default function Demo() {
   return (
-    <section
-      id="demo"
-      style={{
-        padding: "8rem 2rem",
-        background: "#070605",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1605196560547-b2f7281b7355?w=1400&q=30')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          opacity: 0.05,
-          filter: "grayscale(100%)",
-        }}
-      />
-
-      <div
-        style={{
-          position: "relative",
-          zIndex: 10,
-          maxWidth: "960px",
-          margin: "0 auto",
-          textAlign: "center",
-        }}
-      >
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "0.7rem",
-            letterSpacing: "0.35em",
-            color: "var(--color-gold)",
-            textTransform: "uppercase",
-            marginBottom: "1.5rem",
-          }}
-        >
-          See AGORA in Action
-        </p>
+    <section id="demo" className="section">
+      <div style={{ maxWidth: "880px" }}>
+        <p className="section-mark">§ 03 — In Action</p>
 
         <h2
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(2rem, 5vw, 3.2rem)",
+            fontSize: "clamp(2rem, 5vw, 3.4rem)",
             fontWeight: 400,
             color: "var(--color-text)",
             marginBottom: "1.25rem",
-            lineHeight: 1.2,
+            lineHeight: 1.15,
           }}
         >
           A walkthrough of the platform.
@@ -85,52 +45,39 @@ export default function Demo() {
         <p
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "0.95rem",
+            fontSize: "0.98rem",
             color: "var(--color-muted)",
-            lineHeight: 1.7,
-            marginBottom: "3rem",
+            lineHeight: 1.8,
+            marginBottom: "2.6rem",
             maxWidth: "560px",
-            margin: "0 auto 3rem",
           }}
         >
-          Analysis, deliberation, petition, and export — end to end, in under five minutes.
+          Analysis, deliberation, petition, and export — end to end, in under
+          five minutes.
         </p>
 
         <div
-          className="glass"
           style={{
-            padding: "0.75rem",
-            marginBottom: "3rem",
-            background: "rgba(0,0,0,0.4)",
+            border: "1px solid var(--color-line)",
+            padding: "0.6rem",
+            background: "rgba(0,0,0,0.35)",
+            marginBottom: "2.6rem",
           }}
         >
-          {/* Captions track can be added later by placing demo.vtt next to the mp4 and uncommenting the <track> below. */}
           <video
             controls
             playsInline
             preload="metadata"
-            style={{
-              display: "block",
-              width: "100%",
-              height: "auto",
-              borderRadius: "2px",
-            }}
+            style={{ display: "block", width: "100%", height: "auto" }}
           >
             <source src="/presentations/demo.mp4" type="video/mp4" />
-            {/* <track kind="captions" src="/presentations/demo.vtt" srcLang="en" label="English" default /> */}
-            Your browser does not support embedded video. Download the walkthrough at{" "}
+            Your browser does not support embedded video. Download the
+            walkthrough at{" "}
             <a href="/presentations/demo.mp4">/presentations/demo.mp4</a>.
           </video>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            gap: "1rem",
-            justifyContent: "center",
-            flexWrap: "wrap",
-          }}
-        >
+        <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
           <a
             href="#join"
             onClick={(e) => {
@@ -140,7 +87,7 @@ export default function Demo() {
             style={{
               ...ctaBase(),
               background: "var(--color-gold)",
-              color: "#0c0b09",
+              color: "#0b0a08",
               border: "1px solid var(--color-gold)",
             }}
             onMouseEnter={(e) => {
@@ -172,7 +119,7 @@ export default function Demo() {
             onMouseEnter={(e) => {
               const el = e.currentTarget;
               el.style.background = "var(--color-gold)";
-              el.style.color = "#0c0b09";
+              el.style.color = "#0b0a08";
               el.style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {

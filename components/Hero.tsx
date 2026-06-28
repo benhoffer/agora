@@ -4,123 +4,109 @@ export default function Hero() {
   return (
     <section
       id="top"
+      className="section"
       style={{
-        position: "relative",
         minHeight: "100vh",
         display: "flex",
-        alignItems: "center",
+        flexDirection: "column",
         justifyContent: "center",
+        paddingTop: "5rem",
+        paddingBottom: "5rem",
+        position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Background image */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1920&q=80')",
-          backgroundSize: "cover",
-          backgroundPosition: "center 40%",
-          backgroundRepeat: "no-repeat",
-        }}
-      />
-
-      {/* Dark gradient overlay */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(to bottom, rgba(12,11,9,0.45) 0%, rgba(12,11,9,0.65) 50%, rgba(12,11,9,0.97) 100%)",
-        }}
-      />
-
-      {/* Content */}
-      <div
-        style={{
-          position: "relative",
-          zIndex: 10,
-          textAlign: "center",
-          padding: "0 2rem",
-          maxWidth: "900px",
-        }}
-      >
-        {/* Eyebrow tag */}
+      <div style={{ maxWidth: "760px" }} className="reveal">
         <p
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "0.75rem",
-            letterSpacing: "0.35em",
+            fontSize: "0.72rem",
+            letterSpacing: "0.3em",
             color: "var(--color-gold)",
-            marginBottom: "1.5rem",
             textTransform: "uppercase",
+            marginBottom: "2rem",
           }}
         >
-          Deliberative, direct, deep democracy.
+          Deliberative · Direct · Deep Democracy
         </p>
 
-        {/* Main headline */}
         <h1
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(5rem, 16vw, 12rem)",
+            fontSize: "clamp(4.5rem, 13vw, 10rem)",
             fontWeight: 300,
             color: "var(--color-gold)",
-            letterSpacing: "0.15em",
-            lineHeight: 1,
+            letterSpacing: "0.08em",
+            lineHeight: 0.95,
             margin: "0 0 1.5rem",
           }}
         >
           AGORA
         </h1>
 
-        {/* Subtitle */}
         <p
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.1rem, 2.5vw, 1.6rem)",
-            fontWeight: 300,
+            fontSize: "clamp(1.4rem, 3.4vw, 2.1rem)",
+            fontWeight: 400,
+            fontStyle: "italic",
             color: "var(--color-text)",
-            letterSpacing: "0.05em",
-            marginBottom: "3rem",
-            opacity: 0.9,
+            lineHeight: 1.25,
+            marginBottom: "2.6rem",
+            maxWidth: "560px",
           }}
         >
           Gold standard civic infrastructure for democracy.
         </p>
 
-        {/* CTA Buttons */}
         <div
+          className="rule-gold"
+          style={{ maxWidth: "120px", marginBottom: "2.6rem" }}
+        />
+
+        {/* Problem, folded into the opening */}
+        <p
           style={{
-            display: "flex",
-            gap: "1rem",
-            justifyContent: "center",
-            flexWrap: "wrap",
+            fontFamily: "var(--font-sans)",
+            fontSize: "1.02rem",
+            color: "var(--color-text)",
+            opacity: 0.82,
+            lineHeight: 1.85,
+            maxWidth: "600px",
+            marginBottom: "3rem",
           }}
         >
+          Democracies are eroding while authoritarian power consolidates, and the
+          newest technology is turned toward surveillance and suppression rather
+          than autonomy. AGORA turns those same tools back toward communities —
+          secure, sovereign infrastructure that citizens read, write, and ratify,
+          on a server they own. Representative democracy has only ever given the
+          public a vote — AGORA proposes to give communities the real power:
+          authorship.
+        </p>
+
+        <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
           <a
             href="#demo"
             style={{
-              display: "inline-block",
-              padding: "0.875rem 2.5rem",
+              padding: "0.95rem 2.4rem",
               background: "var(--color-gold)",
-              color: "#0c0b09",
+              color: "#0b0a08",
               fontFamily: "var(--font-sans)",
-              fontSize: "0.875rem",
+              fontSize: "0.78rem",
               fontWeight: 500,
-              letterSpacing: "0.12em",
-              textDecoration: "none",
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
+              textDecoration: "none",
               transition: "background 0.2s, transform 0.2s",
             }}
             onMouseEnter={(e) => {
-              const el = e.target as HTMLElement;
+              const el = e.currentTarget;
               el.style.background = "var(--color-gold-light)";
               el.style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
-              const el = e.target as HTMLElement;
+              const el = e.currentTarget;
               el.style.background = "var(--color-gold)";
               el.style.transform = "translateY(0)";
             }}
@@ -131,28 +117,27 @@ export default function Hero() {
           <a
             href="#join"
             style={{
-              display: "inline-block",
-              padding: "0.875rem 2.5rem",
+              padding: "0.95rem 2.4rem",
               background: "transparent",
               color: "var(--color-text)",
-              border: "1px solid rgba(240, 235, 224, 0.4)",
+              border: "1px solid rgba(233, 227, 212, 0.32)",
               fontFamily: "var(--font-sans)",
-              fontSize: "0.875rem",
+              fontSize: "0.78rem",
               fontWeight: 400,
-              letterSpacing: "0.12em",
-              textDecoration: "none",
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
+              textDecoration: "none",
               transition: "border-color 0.2s, color 0.2s, transform 0.2s",
             }}
             onMouseEnter={(e) => {
-              const el = e.target as HTMLElement;
+              const el = e.currentTarget;
               el.style.borderColor = "var(--color-gold)";
               el.style.color = "var(--color-gold)";
               el.style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
-              const el = e.target as HTMLElement;
-              el.style.borderColor = "rgba(240, 235, 224, 0.4)";
+              const el = e.currentTarget;
+              el.style.borderColor = "rgba(233, 227, 212, 0.32)";
               el.style.color = "var(--color-text)";
               el.style.transform = "translateY(0)";
             }}
@@ -160,41 +145,6 @@ export default function Hero() {
             Request AGORA
           </a>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: "2.5rem",
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "0.5rem",
-          opacity: 0.5,
-        }}
-      >
-        <span
-          style={{
-            fontSize: "0.65rem",
-            letterSpacing: "0.25em",
-            color: "var(--color-muted)",
-            fontFamily: "var(--font-sans)",
-            textTransform: "uppercase",
-          }}
-        >
-          Scroll
-        </span>
-        <div
-          style={{
-            width: "1px",
-            height: "2.5rem",
-            background:
-              "linear-gradient(to bottom, var(--color-muted), transparent)",
-          }}
-        />
       </div>
     </section>
   );

@@ -296,57 +296,19 @@ export default function ActionHub() {
   };
 
   return (
-    <section
-      id="join"
-      style={{
-        position: "relative",
-        padding: "8rem 2rem 10rem",
-        background: "#080706",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=1400&q=30')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          opacity: 0.04,
-          filter: "grayscale(100%)",
-        }}
-      />
-
-      <div
-        style={{
-          position: "relative",
-          zIndex: 10,
-          maxWidth: "860px",
-          margin: "0 auto",
-        }}
-      >
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "0.7rem",
-            letterSpacing: "0.35em",
-            color: "var(--color-gold)",
-            textTransform: "uppercase",
-            marginBottom: "1.5rem",
-          }}
-        >
-          Request AGORA
-        </p>
+    <section id="join" className="section" style={{ paddingBottom: "8rem" }}>
+      <div style={{ maxWidth: "880px" }}>
+        <p className="section-mark">§ 05 — Request AGORA</p>
 
         <h2
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(2rem, 5vw, 3.2rem)",
+            fontSize: "clamp(2rem, 5vw, 3.4rem)",
             fontWeight: 400,
             color: "var(--color-text)",
             marginBottom: "3rem",
-            lineHeight: 1.2,
+            lineHeight: 1.15,
+            maxWidth: "620px",
           }}
         >
           Bring AGORA to your community.
@@ -410,7 +372,14 @@ export default function ActionHub() {
         </div>
 
         {persona && !submitted && (
-          <div className="glass fade-slide-in" style={{ padding: "2.5rem" }}>
+          <div
+            className="fade-slide-in"
+            style={{
+              padding: "2.5rem",
+              border: "1px solid var(--color-line)",
+              background: "var(--color-panel)",
+            }}
+          >
             <form onSubmit={handleSubmit}>
               <div style={{ marginBottom: "2rem" }}>
                 {persona === "citizen" && <CitizenForm />}
@@ -471,8 +440,13 @@ export default function ActionHub() {
 
         {submitted && (
           <div
-            className="glass fade-slide-in"
-            style={{ padding: "3rem", textAlign: "center" }}
+            className="fade-slide-in"
+            style={{
+              padding: "3rem",
+              textAlign: "center",
+              border: "1px solid var(--color-line)",
+              background: "var(--color-panel)",
+            }}
           >
             <p
               style={{

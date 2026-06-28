@@ -1,19 +1,23 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-bg: #0c0b09;
-  --color-surface: rgba(255, 255, 255, 0.06);
-  --color-surface-hover: rgba(255, 255, 255, 0.1);
+  --color-bg: #0b0a08;
+  --color-bg-2: #100e0b;
+  --color-panel: #131009;
   --color-gold: #c9a84c;
-  --color-gold-light: #e0c068;
-  --color-gold-dim: rgba(201, 168, 76, 0.15);
-  --color-text: #f0ebe0;
-  --color-muted: #9e9585;
-  --color-border: rgba(201, 168, 76, 0.2);
-  --color-border-bright: rgba(201, 168, 76, 0.5);
+  --color-gold-light: #e6cd7a;
+  --color-gold-dim: rgba(201, 168, 76, 0.16);
+  --color-text: #e9e3d4;
+  --color-muted: #968d79;
+  --color-faint: #5d564a;
+  --color-line: rgba(201, 168, 76, 0.18);
+  --color-line-soft: rgba(233, 227, 212, 0.08);
 
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Inter", system-ui, sans-serif;
+
+  --sidebar-w: 280px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -30,59 +34,131 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  min-height: 100vh;
 }
 
 ::selection {
   background: var(--color-gold);
-  color: #0c0b09;
+  color: #0b0a08;
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #0c0b09;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(201, 168, 76, 0.3);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(201, 168, 76, 0.6);
+/* ── Paper grain — kills the flat gradient look ── */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+  background-image: radial-gradient(rgba(255, 245, 220, 0.05) 0.5px, transparent 0.5px);
+  background-size: 3px 3px;
 }
 
-/* Glass panel utility */
-.glass {
-  background: var(--color-surface);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--color-border);
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: rgba(201, 168, 76, 0.25); }
+::-webkit-scrollbar-thumb:hover { background: rgba(201, 168, 76, 0.5); }
+
+/* ─────────────────────── Layout shell ─────────────────────── */
+.shell {
+  position: relative;
+  z-index: 2;
 }
 
-/* Gold divider */
-.gold-divider {
+.main {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh;
+}
+
+/* ─────────────────────── Sidebar ─────────────────────── */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-w);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  padding: 2.6rem 2rem 2.2rem;
+  background: linear-gradient(180deg, var(--color-bg-2), var(--color-bg));
+  border-right: 1px solid var(--color-line);
+}
+
+/* ── Section rhythm ── */
+.section {
+  padding: 6rem clamp(1.6rem, 5vw, 5rem);
+  border-top: 1px solid var(--color-line-soft);
+  position: relative;
+}
+.section:first-child { border-top: none; }
+
+.section-mark {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 1.4rem;
+}
+
+/* ── Ledger rows (the platform "index") ── */
+.ledger-row {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding: 2.2rem 0.5rem 2.2rem 0;
+  border-top: 1px solid var(--color-line);
+  transition: padding-left 0.45s var(--ease), background 0.45s var(--ease);
+}
+.ledger-row:hover {
+  padding-left: 0.9rem;
+  background: rgba(201, 168, 76, 0.03);
+}
+.ledger-num {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--color-gold);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Generic hairline rule ── */
+.rule-gold {
   height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--color-gold),
-    transparent
-  );
+  background: linear-gradient(to right, var(--color-gold), transparent);
 }
 
-/* Demo panel fade-in */
-@keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
+/* ── Reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: rise 0.9s var(--ease) forwards;
+}
+@keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+.fade-slide-in { animation: rise 0.5s var(--ease) forwards; }
+
+/* ─────────────────────── Mobile ─────────────────────── */
+@media (max-width: 880px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.4rem;
+    border-right: none;
+    border-bottom: 1px solid var(--color-line);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .sidebar-mid { display: none !important; }
+  .main { margin-left: 0; }
+  .section { padding: 4rem 1.4rem; }
 }
 
-.fade-slide-in {
-  animation: fadeSlideIn 0.4s ease forwards;
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .fade-slide-in { animation: none; opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
 }

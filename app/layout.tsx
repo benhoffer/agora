@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     description: "Gold Standard Direct Democracy Infrastructure.",
     type: "website",
   },
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

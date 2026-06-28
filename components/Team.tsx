@@ -1,99 +1,69 @@
 const TEAM = [
-  {
-    name: "Benjamin Hoffer",
-    role: "Project Lead",
-  },
-  {
-    name: "Margaux Harrington",
-    role: "Outreach & Logistics",
-  },
-  {
-    name: "Andrey Belyatov",
-    role: "Advisor — Cybersecurity",
-  },
-  {
-    name: "Justin Phillips, PhD",
-    role: "Advisor — Quantitative Political Science",
-  },
-  {
-    name: "Graham Dove, PhD",
-    role: "Advisor — Digital Civics",
-  },
+  { name: "Benjamin Hoffer", role: "Project Lead" },
+  { name: "Margaux Harrington", role: "Outreach & Logistics" },
+  { name: "Andrey Belyatov", role: "Advisor — Cybersecurity" },
+  { name: "Justin Phillips, PhD", role: "Advisor — Quantitative Political Science" },
+  { name: "Graham Dove, PhD", role: "Advisor — Digital Civics" },
 ];
 
 export default function Team() {
   return (
-    <section
-      id="team"
-      style={{
-        position: "relative",
-        padding: "8rem 2rem",
-        background: "var(--color-bg)",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          position: "relative",
-          zIndex: 10,
-          maxWidth: "1100px",
-          margin: "0 auto",
-        }}
-      >
-        <p
+    <section id="team" className="section">
+      <div style={{ maxWidth: "880px" }}>
+        <p className="section-mark">§ 04 — Expertise & Movement</p>
+
+        <h2
           style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "0.7rem",
-            letterSpacing: "0.35em",
-            color: "var(--color-gold)",
-            textTransform: "uppercase",
-            marginBottom: "1.5rem",
-            textAlign: "center",
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(2rem, 5vw, 3.4rem)",
+            fontWeight: 400,
+            color: "var(--color-text)",
+            lineHeight: 1.15,
+            marginBottom: "3rem",
+            maxWidth: "620px",
           }}
         >
-          Expertise & Movement
-        </p>
+          A responsible team advancing both theory and action.
+        </h2>
 
-        <div style={{ marginBottom: "4rem" }} />
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            gap: "1.25rem",
-          }}
-        >
+        <div>
           {TEAM.map((member) => (
             <div
               key={member.name}
-              className="glass"
-              style={{ padding: "1.75rem 1.5rem", textAlign: "center" }}
+              style={{
+                display: "flex",
+                alignItems: "baseline",
+                justifyContent: "space-between",
+                gap: "1.5rem",
+                flexWrap: "wrap",
+                padding: "1.3rem 0",
+                borderTop: "1px solid var(--color-line)",
+              }}
             >
-              <p
+              <span
                 style={{
                   fontFamily: "var(--font-display)",
-                  fontSize: "1.15rem",
+                  fontSize: "1.5rem",
                   fontWeight: 500,
                   color: "var(--color-text)",
-                  marginBottom: "0.5rem",
-                  lineHeight: 1.3,
                 }}
               >
                 {member.name}
-              </p>
-              <p
+              </span>
+              <span
                 style={{
                   fontFamily: "var(--font-sans)",
-                  fontSize: "0.75rem",
-                  letterSpacing: "0.08em",
+                  fontSize: "0.74rem",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
                   color: "var(--color-muted)",
-                  lineHeight: 1.5,
                 }}
               >
                 {member.role}
-              </p>
+              </span>
             </div>
           ))}
+          <div style={{ borderTop: "1px solid var(--color-line)" }} />
         </div>
       </div>
     </section>
