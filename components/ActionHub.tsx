@@ -254,6 +254,7 @@ export default function ActionHub() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -467,7 +468,7 @@ export default function ActionHub() {
                 marginBottom: "0.75rem",
               }}
             >
-              You&apos;re in the Assembly.
+              Your voice is on the record.
             </h3>
             <p
               style={{
@@ -475,10 +476,31 @@ export default function ActionHub() {
                 fontSize: "0.9rem",
                 color: "var(--color-muted)",
                 lineHeight: 1.7,
+                marginBottom: "1.75rem",
               }}
             >
-              Thank you for reaching out. We&apos;ll be in touch within 2 business days.
+              Combat the concentration of power. Injustice anywhere is a threat to justice everywhere — share this link to bring your friends and community onboard.
             </p>
+            <button
+              type="button"
+              onClick={() => {
+                navigator.clipboard.writeText("https://agora.direct-democracy.dev");
+                setLinkCopied(true);
+                setTimeout(() => setLinkCopied(false), 2000);
+              }}
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "0.85rem",
+                letterSpacing: "0.05em",
+                color: "var(--color-gold)",
+                background: "transparent",
+                border: "1px solid var(--color-gold)",
+                padding: "0.7rem 1.5rem",
+                cursor: "pointer",
+              }}
+            >
+              {linkCopied ? "Link copied" : "Copy share link"}
+            </button>
           </div>
         )}
 
