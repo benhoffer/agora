@@ -2,11 +2,39 @@
 
 import { internalAction } from "./_generated/server";
 import { v } from "convex/values";
-import { createSign } from "crypto";
+import { webcrypto } from "crypto";
+
+async function signRS256(input: string, pemKey: string): Promise<string> {
+  // Strip PEM headers/footers and whitespace to get raw base64
+  const pemBody = pemKey
+    .replace(/-----BEGIN PRIVATE KEY-----/, "")
+    .replace(/-----END PRIVATE KEY-----/, "")
+    .replace(/\s+/g, "");
+
+  const der = Buffer.from(pemBody, "base64");
+
+  const key = await webcrypto.subtle.importKey(
+    "pkcs8",
+    der,
+    { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+
+  const signature = await webcrypto.subtle.sign(
+    "RSASSA-PKCS1-v1_5",
+    key,
+    Buffer.from(input)
+  );
+
+  return Buffer.from(signature).toString("base64url");
+}
 
 async function getAccessToken(): Promise<string> {
   const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL!;
-  const rawKey = process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, "\n");
+  const rawKey = process.env.GOOGLE_PRIVATE_KEY!
+    .replace(/\\n/g, "\n")
+    .replace(/\r\n/g, "\n");
 
   const now = Math.floor(Date.now() / 1000);
   const header = Buffer.from(JSON.stringify({ alg: "RS256", typ: "JWT" })).toString("base64url");
@@ -21,9 +49,7 @@ async function getAccessToken(): Promise<string> {
   ).toString("base64url");
 
   const toSign = `${header}.${payload}`;
-  const signer = createSign("RSA-SHA256");
-  signer.update(toSign);
-  const signature = signer.sign(rawKey, "base64url");
+  const signature = await signRS256(toSign, rawKey);
   const jwt = `${toSign}.${signature}`;
 
   const res = await fetch("https://oauth2.googleapis.com/token", {
@@ -36,6 +62,9 @@ async function getAccessToken(): Promise<string> {
   });
 
   const data = (await res.json()) as { access_token: string };
+  if (!data.access_token) {
+    throw new Error(`Failed to get access token: ${JSON.stringify(data)}`);
+  }
   return data.access_token;
 }
 
@@ -54,7 +83,6 @@ export const appendRow = internalAction({
       timeZone: "America/New_York",
     });
 
-    // Fixed columns + remaining fields as "key: value" pairs
     const name = fields.name ?? "";
     const email = fields.email ?? "";
     const extras = Object.entries(fields)
