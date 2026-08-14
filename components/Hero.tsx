@@ -19,10 +19,10 @@ export default function Hero() {
       <div style={{ maxWidth: "760px" }} className="reveal">
         <p
           style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "0.72rem",
-            letterSpacing: "0.3em",
-            color: "var(--color-gold)",
+            fontFamily: "var(--font-display)",
+            fontSize: "0.74rem",
+            letterSpacing: "0.26em",
+            color: "var(--color-gold-deep)",
             textTransform: "uppercase",
             marginBottom: "2rem",
           }}
@@ -33,10 +33,10 @@ export default function Hero() {
         <h1
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(4.5rem, 13vw, 10rem)",
-            fontWeight: 300,
-            color: "var(--color-gold)",
-            letterSpacing: "0.08em",
+            fontSize: "clamp(4rem, 11vw, 8.5rem)",
+            fontWeight: 500,
+            color: "var(--color-text)",
+            letterSpacing: "0.04em",
             lineHeight: 0.95,
             margin: "0 0 1.5rem",
           }}
@@ -91,7 +91,7 @@ export default function Hero() {
             style={{
               padding: "0.95rem 2.4rem",
               background: "var(--color-gold)",
-              color: "#0b0a08",
+              color: "var(--color-text)",
               fontFamily: "var(--font-sans)",
               fontSize: "0.78rem",
               fontWeight: 500,
@@ -102,7 +102,7 @@ export default function Hero() {
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget;
-              el.style.background = "var(--color-gold-light)";
+              el.style.background = "var(--color-gold-deep)";
               el.style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
@@ -120,7 +120,7 @@ export default function Hero() {
               padding: "0.95rem 2.4rem",
               background: "transparent",
               color: "var(--color-text)",
-              border: "1px solid rgba(233, 227, 212, 0.32)",
+              border: "1px solid rgba(38, 33, 23, 0.28)",
               fontFamily: "var(--font-sans)",
               fontSize: "0.78rem",
               fontWeight: 400,
@@ -131,13 +131,13 @@ export default function Hero() {
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget;
-              el.style.borderColor = "var(--color-gold)";
-              el.style.color = "var(--color-gold)";
+              el.style.borderColor = "var(--color-gold-deep)";
+              el.style.color = "var(--color-gold-deep)";
               el.style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget;
-              el.style.borderColor = "rgba(233, 227, 212, 0.32)";
+              el.style.borderColor = "rgba(38, 33, 23, 0.28)";
               el.style.color = "var(--color-text)";
               el.style.transform = "translateY(0)";
             }}

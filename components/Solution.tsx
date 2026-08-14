@@ -35,7 +35,7 @@ function LedgerRow({ num, title, body }: { num: string; title: string; body: str
         className="ledger-num"
         style={{
           transition: "color 0.3s ease",
-          color: open ? "var(--color-gold-light)" : "var(--color-gold)",
+          color: open ? "var(--color-gold-deep)" : "var(--color-gold)",
         }}
       >
         {num}
@@ -46,7 +46,7 @@ function LedgerRow({ num, title, body }: { num: string; title: string; body: str
             fontFamily: "var(--font-display)",
             fontSize: "1.6rem",
             fontWeight: 500,
-            color: open ? "var(--color-gold-light)" : "var(--color-text)",
+            color: open ? "var(--color-gold-deep)" : "var(--color-text)",
             marginBottom: open ? "0.7rem" : 0,
             transition: "color 0.3s ease, margin-bottom 0.35s ease",
           }}

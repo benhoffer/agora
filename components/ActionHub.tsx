@@ -26,8 +26,8 @@ function inputStyle(focused: boolean = false): React.CSSProperties {
   return {
     width: "100%",
     padding: "0.75rem 1rem",
-    background: "rgba(0,0,0,0.35)",
-    border: `1px solid ${focused ? "rgba(201,168,76,0.6)" : "rgba(201,168,76,0.2)"}`,
+    background: "#fffdf6",
+    border: `1px solid ${focused ? "rgba(183,146,42,0.7)" : "var(--color-line)"}`,
     color: "var(--color-text)",
     fontFamily: "var(--font-sans)",
     fontSize: "0.875rem",
@@ -102,7 +102,7 @@ function SelectGroup({
       >
         <option value="">Select one</option>
         {options.map((o) => (
-          <option key={o} value={o} style={{ background: "#0c0b09" }}>
+          <option key={o} value={o} style={{ background: "#fffdf6" }}>
             {o}
           </option>
         ))}
@@ -334,15 +334,15 @@ export default function ActionHub() {
                 padding: "1.5rem 1.25rem",
                 background:
                   persona === p.id
-                    ? "rgba(201,168,76,0.12)"
-                    : "rgba(255,255,255,0.04)",
+                    ? "var(--color-gold-dim)"
+                    : "#fffdf6",
                 border: `1px solid ${
                   persona === p.id
-                    ? "rgba(201,168,76,0.6)"
-                    : "rgba(201,168,76,0.15)"
+                    ? "rgba(183,146,42,0.6)"
+                    : "var(--color-line)"
                 }`,
                 color:
-                  persona === p.id ? "var(--color-gold)" : "var(--color-muted)",
+                  persona === p.id ? "var(--color-gold-deep)" : "var(--color-muted)",
                 fontFamily: "var(--font-sans)",
                 fontSize: "0.85rem",
                 fontWeight: persona === p.id ? 500 : 400,
@@ -394,8 +394,8 @@ export default function ActionHub() {
                   disabled={loading}
                   style={{
                     padding: "0.875rem 2.5rem",
-                    background: loading ? "rgba(201,168,76,0.4)" : "var(--color-gold)",
-                    color: "#0c0b09",
+                    background: loading ? "rgba(183,146,42,0.4)" : "var(--color-gold)",
+                    color: "var(--color-text)",
                     border: "none",
                     fontFamily: "var(--font-sans)",
                     fontSize: "0.8rem",
@@ -408,7 +408,7 @@ export default function ActionHub() {
                   onMouseEnter={(e) => {
                     if (loading) return;
                     const el = e.target as HTMLElement;
-                    el.style.background = "var(--color-gold-light)";
+                    el.style.background = "var(--color-gold-deep)";
                     el.style.transform = "translateY(-1px)";
                   }}
                   onMouseLeave={(e) => {
@@ -427,7 +427,7 @@ export default function ActionHub() {
                       marginTop: "0.75rem",
                       fontFamily: "var(--font-sans)",
                       fontSize: "0.8rem",
-                      color: "#e05c5c",
+                      color: "#a83b3b",
                       lineHeight: 1.5,
                     }}
                   >
@@ -492,9 +492,9 @@ export default function ActionHub() {
                 fontFamily: "var(--font-sans)",
                 fontSize: "0.85rem",
                 letterSpacing: "0.05em",
-                color: "var(--color-gold)",
+                color: "var(--color-gold-deep)",
                 background: "transparent",
-                border: "1px solid var(--color-gold)",
+                border: "1px solid var(--color-gold-deep)",
                 padding: "0.7rem 1.5rem",
                 cursor: "pointer",
               }}

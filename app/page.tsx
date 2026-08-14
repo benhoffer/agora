@@ -8,32 +8,6 @@ import ActionHub from "@/components/ActionHub";
 export default function Home() {
   return (
     <>
-      {/* Colosseum — fixed behind everything, content scrolls over it */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 0,
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1920&q=80')",
-          backgroundSize: "160%",
-          backgroundPosition: "70% 35%",
-          backgroundRepeat: "no-repeat",
-          opacity: 0.38,
-        }}
-      />
-      {/* Dark vignette over the photo */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 0,
-          background:
-            "linear-gradient(to right, rgba(11,10,8,0.55) 0%, rgba(11,10,8,0.15) 55%, rgba(11,10,8,0.45) 100%), linear-gradient(to bottom, rgba(11,10,8,0.15) 0%, rgba(11,10,8,0.75) 90%)",
-        }}
-      />
       <div className="grain" aria-hidden="true" />
       <div className="shell">
         <Sidebar />
@@ -60,7 +34,7 @@ export default function Home() {
                 fontFamily: "var(--font-display)",
                 fontSize: "1.05rem",
                 fontWeight: 600,
-                color: "var(--color-gold)",
+                color: "var(--color-text)",
                 letterSpacing: "0.2em",
               }}
             >

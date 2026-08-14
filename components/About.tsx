@@ -128,7 +128,7 @@ export default function About() {
           onMouseEnter={(e) => {
             const el = e.target as HTMLElement;
             el.style.background = "var(--color-gold)";
-            el.style.color = "#0c0b09";
+            el.style.color = "var(--color-text)";
           }}
           onMouseLeave={(e) => {
             const el = e.target as HTMLElement;

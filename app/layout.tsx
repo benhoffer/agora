@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cinzel, EB_Garamond } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const cinzel = Cinzel({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const inter = Inter({
+const ebGaramond = EB_Garamond({
   variable: "--font-sans",
   subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -26,7 +28,8 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/favicon.svg",
+    icon: "/icon.png",
+    apple: "/apple-touch-icon.png",
   },
 };
 
@@ -37,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${cormorant.variable} ${inter.variable} antialiased`}>
+      <body className={`${cinzel.variable} ${ebGaramond.variable} antialiased`}>
         {children}
         <Analytics />
       </body>

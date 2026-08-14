@@ -60,7 +60,7 @@ export default function Demo() {
           style={{
             border: "1px solid var(--color-line)",
             padding: "0.6rem",
-            background: "rgba(0,0,0,0.35)",
+            background: "var(--color-panel)",
             marginBottom: "2.6rem",
           }}
         >
@@ -87,12 +87,12 @@ export default function Demo() {
             style={{
               ...ctaBase(),
               background: "var(--color-gold)",
-              color: "#0b0a08",
+              color: "var(--color-text)",
               border: "1px solid var(--color-gold)",
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget;
-              el.style.background = "var(--color-gold-light)";
+              el.style.background = "var(--color-gold-deep)";
               el.style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
@@ -113,19 +113,19 @@ export default function Demo() {
             style={{
               ...ctaBase(),
               background: "transparent",
-              color: "var(--color-gold)",
-              border: "1px solid var(--color-gold)",
+              color: "var(--color-gold-deep)",
+              border: "1px solid var(--color-gold-deep)",
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget;
               el.style.background = "var(--color-gold)";
-              el.style.color = "#0b0a08";
+              el.style.color = "var(--color-text)";
               el.style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget;
               el.style.background = "transparent";
-              el.style.color = "var(--color-gold)";
+              el.style.color = "var(--color-gold-deep)";
               el.style.transform = "translateY(0)";
             }}
           >

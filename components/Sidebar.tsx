@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const NAV = [
@@ -39,20 +40,27 @@ export default function Sidebar() {
         style={{
           textDecoration: "none",
           display: "flex",
-          alignItems: "baseline",
-          gap: "0.6rem",
+          alignItems: "center",
+          gap: "0.7rem",
         }}
       >
+        <Image
+          src="/brand/agora-seal-gold.png"
+          alt=""
+          width={36}
+          height={36}
+          style={{ width: "2.25rem", height: "2.25rem", flexShrink: 0 }}
+        />
         <span
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "1.7rem",
+            fontSize: "1.4rem",
             fontWeight: 600,
-            color: "var(--color-gold)",
-            letterSpacing: "0.24em",
+            color: "var(--color-text)",
+            letterSpacing: "0.02em",
           }}
         >
-          AGORA
+          Agora
         </span>
       </a>
 
@@ -60,11 +68,11 @@ export default function Sidebar() {
         className="sidebar-mid"
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "0.66rem",
-          letterSpacing: "0.18em",
+          fontSize: "0.72rem",
+          letterSpacing: "0.14em",
           textTransform: "uppercase",
           color: "var(--color-faint)",
-          marginTop: "0.7rem",
+          marginTop: "0.9rem",
           lineHeight: 1.7,
         }}
       >
@@ -154,8 +162,8 @@ export default function Sidebar() {
         style={{
           textAlign: "center",
           padding: "0.7rem 1.1rem",
-          border: "1px solid var(--color-gold)",
-          color: "var(--color-gold)",
+          border: "1px solid var(--color-gold-deep)",
+          color: "var(--color-gold-deep)",
           fontFamily: "var(--font-sans)",
           fontSize: "0.72rem",
           letterSpacing: "0.16em",
@@ -166,12 +174,14 @@ export default function Sidebar() {
         onMouseEnter={(e) => {
           const el = e.currentTarget;
           el.style.background = "var(--color-gold)";
-          el.style.color = "#0b0a08";
+          el.style.color = "var(--color-text)";
+          el.style.borderColor = "var(--color-gold)";
         }}
         onMouseLeave={(e) => {
           const el = e.currentTarget;
           el.style.background = "transparent";
-          el.style.color = "var(--color-gold)";
+          el.style.color = "var(--color-gold-deep)";
+          el.style.borderColor = "var(--color-gold-deep)";
         }}
       >
         Request AGORA
