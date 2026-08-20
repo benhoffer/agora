@@ -39,7 +39,7 @@ export default function Demo() {
             lineHeight: 1.15,
           }}
         >
-          A walkthrough of the platform.
+          See it, then see how it works.
         </h2>
 
         <p
@@ -52,8 +52,58 @@ export default function Demo() {
             maxWidth: "560px",
           }}
         >
-          Analysis, deliberation, petition, and export — end to end, in under
-          five minutes.
+          Why AGORA exists, and what it looks like end to end — analysis,
+          deliberation, petition, and export, in under five minutes.
+        </p>
+
+        <p
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "0.72rem",
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "var(--color-gold-deep)",
+            marginBottom: "0.9rem",
+          }}
+        >
+          What is AGORA, and why
+        </p>
+
+        <div
+          style={{
+            border: "1px solid var(--color-line)",
+            padding: "0.6rem",
+            background: "var(--color-panel)",
+            marginBottom: "2.6rem",
+          }}
+        >
+          <video
+            controls
+            playsInline
+            preload="metadata"
+            style={{ display: "block", width: "100%", height: "auto" }}
+          >
+            <source src="/presentations/agora-promo.mp4" type="video/mp4" />
+            Your browser does not support embedded video. Download the promo
+            video at{" "}
+            <a href="/presentations/agora-promo.mp4">
+              /presentations/agora-promo.mp4
+            </a>
+            .
+          </video>
+        </div>
+
+        <p
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "0.72rem",
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "var(--color-gold-deep)",
+            marginBottom: "0.9rem",
+          }}
+        >
+          Platform walkthrough
         </p>
 
         <div
