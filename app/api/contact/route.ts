@@ -15,6 +15,16 @@ const PERSONA_SUBJECT_PREFIX: Record<string, string> = {
   ngo: "[NGO request]",
 };
 
+/** Submitted values are untrusted; unescaped, they rendered as HTML in the inbox. */
+function esc(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function buildEmailHtml(
   persona: string,
   fields: Record<string, string>
@@ -26,10 +36,10 @@ function buildEmailHtml(
       ([key, value]) => `
       <tr>
         <td style="padding:8px 12px;border-bottom:1px solid #222;color:#9e9585;font-size:12px;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;width:180px;">
-          ${key.replace(/_/g, " ")}
+          ${esc(key.replace(/_/g, " "))}
         </td>
         <td style="padding:8px 12px;border-bottom:1px solid #222;color:#f0ebe0;font-size:14px;">
-          ${value}
+          ${esc(value)}
         </td>
       </tr>`
     )
@@ -75,11 +85,16 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { persona, fields } = body as {
-      persona: string;
+      persona: "citizen" | "government" | "ngo";
       fields: Record<string, string>;
     };
 
-    if (!persona || !fields) {
+    if (
+      !(persona in PERSONA_LABELS) ||
+      !fields ||
+      typeof fields !== "object" ||
+      Object.values(fields).some((v) => typeof v !== "string")
+    ) {
       return NextResponse.json(
         { error: "Missing persona or fields." },
         { status: 400 }

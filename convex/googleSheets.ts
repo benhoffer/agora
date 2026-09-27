@@ -78,6 +78,8 @@ export const appendRow = internalAction({
     const token = await getAccessToken();
     const sheetId = process.env.GOOGLE_SHEET_ID!;
 
+    // Written RAW, not USER_ENTERED: with USER_ENTERED a submitted name such
+    // as "=IMPORTXML(...)" is evaluated as a formula in the sheet.
     const fields = args.fields as Record<string, string>;
     const timestamp = new Date(args.submittedAt).toLocaleString("en-US", {
       timeZone: "America/New_York",
@@ -93,7 +95,7 @@ export const appendRow = internalAction({
     const row = [timestamp, args.persona, name, email, extras];
 
     const res = await fetch(
-      `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A1:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
+      `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A1:append?valueInputOption=RAW&insertDataOption=INSERT_ROWS`,
       {
         method: "POST",
         headers: {
