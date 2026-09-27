@@ -325,6 +325,12 @@ semantics carry over unchanged.
    infrastructure, not code.*
 4. **Jurisdiction model + French request flow with the L1112-16 counter.**
    Medium; hand-written migrations.
+   *Code done 2026-09-27 (agora-platform PR #4): INSEE-keyed communes,
+   double opt-in, elector counter against one fifth of registered voters,
+   electorate import script. Corpus `jurisdictionKey` scoping moved to phase
+   5 — no French corpus exists to scope yet, and re-keying retrieval now
+   risks NH search for nothing. Still open: import a real electorate file;
+   the formal petition document for filing.*
 5. **French corpus: CGCT + one pilot commune's PLU; multilingual embeddings;
    French FTS; French citations; French eval set.** Largest; gated on a pilot
    commune.
