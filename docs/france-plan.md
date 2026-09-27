@@ -318,6 +318,11 @@ semantics carry over unchanged.
    dashboard work, not code.*
 3. **App i18n scaffold, French UI, Clerk `frFR`, EU deployment.** Medium; the
    extraction is mechanical and parallelisable.
+   *Code done 2026-09-27 (agora-platform PR #3): 1,245 keys, French
+   complete, per-recipient email language. Still open: Terms/Privacy
+   rewritten for France, signed-in pages verified by a human, native-speaker
+   review, and the EU deployment (Neon eu-central-1, Vercel cdg1) —
+   infrastructure, not code.*
 4. **Jurisdiction model + French request flow with the L1112-16 counter.**
    Medium; hand-written migrations.
 5. **French corpus: CGCT + one pilot commune's PLU; multilingual embeddings;
