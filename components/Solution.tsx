@@ -11,7 +11,7 @@ const ITEMS = [
   {
     num: "02",
     title: "Petition & Discuss",
-    body: "Threaded comments anchored to specific clauses. Identity-verified participation — no bots. Multi-factor petition signatures (email, SMS, government ID) that meet state ballot-initiative standards: rate-limited and cryptographically auditable.",
+    body: "Threaded comments anchored to specific clauses. Identity-verified participation — no bots. Email-verified, rate-limited petition signatures.",
   },
   {
     num: "03",
