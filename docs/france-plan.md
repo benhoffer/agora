@@ -310,6 +310,12 @@ semantics carry over unchanged.
 1. **Fix-now list (§0).** Hours. Includes a live US bug.
 2. **Site in French + legal pages + commune autocomplete + EU data flow.**
    Lets the citizen vector start collecting French demand lawfully. Small.
+   *Code done 2026-09-27 (branch `french-site`): `/fr`, legal notice and
+   privacy policy in both languages, commune picker keyed on INSEE, explicit
+   consent. Still open: the LLC's address in `lib/site.ts`, native-speaker
+   review of the copy, French video captions, and the EU moves (Convex EU
+   deployment, Resend EU region with a verified domain, Sheet decision) —
+   dashboard work, not code.*
 3. **App i18n scaffold, French UI, Clerk `frFR`, EU deployment.** Medium; the
    extraction is mechanical and parallelisable.
 4. **Jurisdiction model + French request flow with the L1112-16 counter.**
@@ -327,5 +333,5 @@ with those.
 
 ## Next action
 
-§0 is done. Next: phase 2 — the landing site in French, with legal pages,
-commune autocomplete, and an EU data flow.
+Fill in the LLC's registered address in `lib/site.ts` and merge
+`french-site`; then create the EU Convex deployment.

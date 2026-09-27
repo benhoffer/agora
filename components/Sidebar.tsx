@@ -2,17 +2,18 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import type { Dict } from "@/lib/i18n/types";
 
-const NAV = [
-  { num: "01", label: "Manifest", href: "#top", id: "top" },
-  { num: "02", label: "Platform", href: "#solution", id: "solution" },
-  { num: "03", label: "Demo", href: "#demo", id: "demo" },
-  { num: "04", label: "Expertise", href: "#team", id: "team" },
-  { num: "05", label: "Request", href: "#join", id: "join" },
-];
+const NAV_IDS = ["top", "solution", "demo", "team", "join"] as const;
 
-export default function Sidebar() {
+export default function Sidebar({ t, otherPath }: { t: Dict["sidebar"]; otherPath: string }) {
   const [active, setActive] = useState("top");
+  const NAV = NAV_IDS.map((id, i) => ({
+    num: String(i + 1).padStart(2, "0"),
+    label: t.nav[id],
+    href: `#${id}`,
+    id,
+  }));
 
   useEffect(() => {
     const sections = NAV.map((n) => document.getElementById(n.id)).filter(
@@ -30,6 +31,8 @@ export default function Sidebar() {
 
     sections.forEach((s) => obs.observe(s));
     return () => obs.disconnect();
+    // NAV is derived from constant ids; labels do not affect observation.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -76,9 +79,9 @@ export default function Sidebar() {
           lineHeight: 1.7,
         }}
       >
-        Civic infrastructure
+        {t.tagline[0]}
         <br />
-        for direct democracy
+        {t.tagline[1]}
       </p>
 
       {/* Index nav */}
@@ -184,7 +187,24 @@ export default function Sidebar() {
           el.style.borderColor = "var(--color-gold-deep)";
         }}
       >
-        Request AGORA
+        {t.cta}
+      </a>
+
+      <a
+        href={otherPath}
+        hrefLang={otherPath === "/" ? "en" : "fr"}
+        className="sidebar-lang"
+        style={{
+          marginTop: "1rem",
+          textAlign: "center",
+          fontFamily: "var(--font-sans)",
+          fontSize: "0.72rem",
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          color: "var(--color-muted)",
+        }}
+      >
+        {t.switchLabel}
       </a>
     </aside>
   );

@@ -1,6 +1,8 @@
 "use client";
 
-export default function Hero() {
+import type { Dict } from "@/lib/i18n/types";
+
+export default function Hero({ t }: { t: Dict["hero"] }) {
   return (
     <section
       id="top"
@@ -27,7 +29,7 @@ export default function Hero() {
             marginBottom: "2rem",
           }}
         >
-          Deliberative · Direct · Deep Democracy
+          {t.eyebrow}
         </p>
 
         <h1
@@ -56,7 +58,7 @@ export default function Hero() {
             maxWidth: "560px",
           }}
         >
-          Gold standard civic infrastructure for democracy.
+          {t.subtitle}
         </p>
 
         <div
@@ -76,13 +78,7 @@ export default function Hero() {
             marginBottom: "3rem",
           }}
         >
-          Democracies are eroding while authoritarian power consolidates, and the
-          newest technology is turned toward surveillance and suppression rather
-          than autonomy. AGORA turns those same tools back toward communities —
-          secure, sovereign infrastructure that citizens read, write, and ratify,
-          on a server they own. Representative democracy has only ever given the
-          public a vote — AGORA proposes to give communities the real power:
-          authorship.
+          {t.body}
         </p>
 
         <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
@@ -111,7 +107,7 @@ export default function Hero() {
               el.style.transform = "translateY(0)";
             }}
           >
-            Watch the Demo
+            {t.watchDemo}
           </a>
 
           <a
@@ -142,7 +138,7 @@ export default function Hero() {
               el.style.transform = "translateY(0)";
             }}
           >
-            Request AGORA
+            {t.request}
           </a>
         </div>
       </div>
