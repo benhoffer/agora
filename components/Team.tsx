@@ -1,16 +1,10 @@
-const TEAM = [
-  { name: "Benjamin Hoffer", role: "Project Lead" },
-  { name: "Margaux Harrington", role: "Outreach & Logistics" },
-  { name: "Andrey Belyatov", role: "Advisor — Cybersecurity" },
-  { name: "Justin Phillips, PhD", role: "Advisor — Quantitative Political Science" },
-  { name: "Graham Dove, PhD", role: "Advisor — Digital Civics" },
-];
+import type { Dict } from "@/lib/i18n/types";
 
-export default function Team() {
+export default function Team({ t }: { t: Dict["team"] }) {
   return (
     <section id="team" className="section">
       <div style={{ maxWidth: "880px" }}>
-        <p className="section-mark">§ 04 — Expertise & Movement</p>
+        <p className="section-mark">{t.mark}</p>
 
         <h2
           style={{
@@ -23,11 +17,11 @@ export default function Team() {
             maxWidth: "620px",
           }}
         >
-          A responsible team advancing both theory and action.
+          {t.heading}
         </h2>
 
         <div>
-          {TEAM.map((member) => (
+          {t.members.map((member) => (
             <div
               key={member.name}
               style={{

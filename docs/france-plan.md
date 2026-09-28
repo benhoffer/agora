@@ -310,10 +310,27 @@ semantics carry over unchanged.
 1. **Fix-now list (§0).** Hours. Includes a live US bug.
 2. **Site in French + legal pages + commune autocomplete + EU data flow.**
    Lets the citizen vector start collecting French demand lawfully. Small.
+   *Code done 2026-09-27 (branch `french-site`): `/fr`, legal notice and
+   privacy policy in both languages, commune picker keyed on INSEE, explicit
+   consent. Still open: the LLC's address in `lib/site.ts`, native-speaker
+   review of the copy, French video captions, and the EU moves (Convex EU
+   deployment, Resend EU region with a verified domain, Sheet decision) —
+   dashboard work, not code.*
 3. **App i18n scaffold, French UI, Clerk `frFR`, EU deployment.** Medium; the
    extraction is mechanical and parallelisable.
+   *Code done 2026-09-27 (agora-platform PR #3): 1,245 keys, French
+   complete, per-recipient email language. Still open: Terms/Privacy
+   rewritten for France, signed-in pages verified by a human, native-speaker
+   review, and the EU deployment (Neon eu-central-1, Vercel cdg1) —
+   infrastructure, not code.*
 4. **Jurisdiction model + French request flow with the L1112-16 counter.**
    Medium; hand-written migrations.
+   *Code done 2026-09-27 (agora-platform PR #4): INSEE-keyed communes,
+   double opt-in, elector counter against one fifth of registered voters,
+   electorate import script. Corpus `jurisdictionKey` scoping moved to phase
+   5 — no French corpus exists to scope yet, and re-keying retrieval now
+   risks NH search for nothing. Still open: import a real electorate file;
+   the formal petition document for filing.*
 5. **French corpus: CGCT + one pilot commune's PLU; multilingual embeddings;
    French FTS; French citations; French eval set.** Largest; gated on a pilot
    commune.
@@ -327,5 +344,5 @@ with those.
 
 ## Next action
 
-§0 is done. Next: phase 2 — the landing site in French, with legal pages,
-commune autocomplete, and an EU data flow.
+Fill in the LLC's registered address in `lib/site.ts` and merge
+`french-site`; then create the EU Convex deployment.

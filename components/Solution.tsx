@@ -1,24 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-const ITEMS = [
-  {
-    num: "01",
-    title: "Understand & Author",
-    body: "Translate any policy across reading levels — 5th grade to graduate legal. Ask questions in plain language and get cited answers grounded in the actual text. Side-by-side, color-coded diffs between any two policies, with pre-publication conflict checks against inherited law.",
-  },
-  {
-    num: "02",
-    title: "Petition & Discuss",
-    body: "Threaded comments anchored to specific clauses. Identity-verified participation — no bots. Email-verified, rate-limited petition signatures.",
-  },
-  {
-    num: "03",
-    title: "Govern at Every Scale",
-    body: "Collective action problems are best solved by the people, at the scale of the solution — be it town, state, or national. Community politics lets us organize and develop better answers. Nested organizations with automatic law inheritance — neighborhoods inside towns, towns inside states. Hash-chained, tamper-evident audit log. One-click FOIA-grade export. Role-gated administration across owner, admin, moderator, member, and viewer.",
-  },
-];
+import type { Dict } from "@/lib/i18n/types";
 
 function LedgerRow({ num, title, body }: { num: string; title: string; body: string }) {
   const [open, setOpen] = useState(false);
@@ -80,11 +63,11 @@ function LedgerRow({ num, title, body }: { num: string; title: string; body: str
   );
 }
 
-export default function Solution() {
+export default function Solution({ t }: { t: Dict["solution"] }) {
   return (
     <section id="solution" className="section">
       <div style={{ maxWidth: "880px" }}>
-        <p className="section-mark">§ 02 — The Platform</p>
+        <p className="section-mark">{t.mark}</p>
 
         <h2
           style={{
@@ -97,7 +80,7 @@ export default function Solution() {
             maxWidth: "620px",
           }}
         >
-          The infrastructure of deep democracy.
+          {t.heading}
         </h2>
 
         <p
@@ -110,14 +93,11 @@ export default function Solution() {
             marginBottom: "4rem",
           }}
         >
-          A secure, community-owned platform for proposals, petitions,
-          discussion, and participatory research — in short, sophisticated
-          direct-democratic governance, with government-grade security, audit,
-          and export built in for ease of adoption.
+          {t.intro}
         </p>
 
         <div>
-          {ITEMS.map((item) => (
+          {t.items.map((item) => (
             <LedgerRow key={item.num} {...item} />
           ))}
           <div style={{ borderTop: "1px solid var(--color-line)" }} />
@@ -133,9 +113,7 @@ export default function Solution() {
             maxWidth: "560px",
           }}
         >
-          Sovereign local deployment — all civic data stays in the
-          municipality&apos;s own database. Local LLM inference via Ollama, with
-          an optional Claude API hybrid mode.
+          {t.footnote}
         </p>
       </div>
     </section>

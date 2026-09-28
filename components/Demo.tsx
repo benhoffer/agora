@@ -1,5 +1,7 @@
 "use client";
 
+import type { Dict } from "@/lib/i18n/types";
+
 function ctaBase(): React.CSSProperties {
   return {
     display: "inline-block",
@@ -23,11 +25,11 @@ function routeTo(persona: "citizen" | "government") {
   );
 }
 
-export default function Demo() {
+export default function Demo({ t }: { t: Dict["demo"] }) {
   return (
     <section id="demo" className="section">
       <div style={{ maxWidth: "880px" }}>
-        <p className="section-mark">§ 03 — In Action</p>
+        <p className="section-mark">{t.mark}</p>
 
         <h2
           style={{
@@ -39,7 +41,7 @@ export default function Demo() {
             lineHeight: 1.15,
           }}
         >
-          See it, then see how it works.
+          {t.heading}
         </h2>
 
         <p
@@ -52,9 +54,23 @@ export default function Demo() {
             maxWidth: "560px",
           }}
         >
-          Why AGORA exists, and what it looks like end to end — analysis,
-          deliberation, petition, and export, in under five minutes.
+          {t.intro}
         </p>
+
+        {t.videoLanguageNote && (
+          <p
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.82rem",
+              fontStyle: "italic",
+              color: "var(--color-muted)",
+              marginTop: "-1.6rem",
+              marginBottom: "2.6rem",
+            }}
+          >
+            {t.videoLanguageNote}
+          </p>
+        )}
 
         <p
           style={{
@@ -66,7 +82,7 @@ export default function Demo() {
             marginBottom: "0.9rem",
           }}
         >
-          What is AGORA, and why
+          {t.promoLabel}
         </p>
 
         <div
@@ -84,8 +100,7 @@ export default function Demo() {
             style={{ display: "block", width: "100%", height: "auto" }}
           >
             <source src="/presentations/agora-promo.mp4" type="video/mp4" />
-            Your browser does not support embedded video. Download the promo
-            video at{" "}
+            {t.noVideo}{" "}
             <a href="/presentations/agora-promo.mp4">
               /presentations/agora-promo.mp4
             </a>
@@ -103,7 +118,7 @@ export default function Demo() {
             marginBottom: "0.9rem",
           }}
         >
-          Platform walkthrough
+          {t.walkthroughLabel}
         </p>
 
         <div
@@ -121,8 +136,7 @@ export default function Demo() {
             style={{ display: "block", width: "100%", height: "auto" }}
           >
             <source src="/presentations/demo.mp4" type="video/mp4" />
-            Your browser does not support embedded video. Download the
-            walkthrough at{" "}
+            {t.noVideo}{" "}
             <a href="/presentations/demo.mp4">/presentations/demo.mp4</a>.
           </video>
         </div>
@@ -151,7 +165,7 @@ export default function Demo() {
               el.style.transform = "translateY(0)";
             }}
           >
-            Request AGORA in My Town
+            {t.ctaCitizen}
           </a>
 
           <a
@@ -179,7 +193,7 @@ export default function Demo() {
               el.style.transform = "translateY(0)";
             }}
           >
-            Government Inquiry / RFI
+            {t.ctaGovernment}
           </a>
         </div>
       </div>
