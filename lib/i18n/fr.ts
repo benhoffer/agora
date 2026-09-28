@@ -17,7 +17,7 @@ export const fr: Dict = {
   hero: {
     eyebrow: "Démocratie délibérative · directe · profonde",
     subtitle: "Une infrastructure civique de référence pour la démocratie.",
-    body: "Les démocraties s'érodent tandis que les pouvoirs autoritaires se consolident, et les technologies les plus récentes sont détournées au profit de la surveillance et de la répression plutôt que de l'autonomie. Agora rend ces mêmes outils aux communautés — une infrastructure souveraine et sécurisée, grâce à laquelle les citoyens lisent, écrivent et ratifient les normes, sur un serveur qui leur appartient. La démocratie représentative n'a jamais offert au public qu'un droit de vote. Agora propose de donner aux communautés le pouvoir réel : l'écriture de la loi.",
+    body: "Les démocraties s'érodent tandis que les pouvoirs autoritaires se consolident, et les technologies les plus récentes sont détournées au profit de la surveillance et de la répression plutôt que de l'autonomie. AGORA rend ces mêmes outils aux communautés — une infrastructure souveraine et sécurisée, grâce à laquelle les citoyens lisent, écrivent et ratifient les normes, sur un serveur qui leur appartient. La démocratie représentative n'a jamais offert au public qu'un droit de vote. AGORA propose de donner aux communautés le pouvoir réel : l'écriture de la loi.",
     watchDemo: "Voir la démo",
     request: "Demander AGORA",
   },

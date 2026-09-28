@@ -63,7 +63,7 @@ export default function Sidebar({ t, otherPath }: { t: Dict["sidebar"]; otherPat
             letterSpacing: "0.02em",
           }}
         >
-          Agora
+          AGORA
         </span>
       </a>
 

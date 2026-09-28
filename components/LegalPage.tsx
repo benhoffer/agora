@@ -27,7 +27,7 @@ export default function LegalPage({
             letterSpacing: "0.02em",
           }}
         >
-          Agora
+          AGORA
         </a>
       </header>
       <main className="legal" style={{ maxWidth: "720px", margin: "0 auto", padding: "3.5rem 1.6rem 5rem" }}>
