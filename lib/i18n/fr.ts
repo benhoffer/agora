@@ -17,7 +17,7 @@ export const fr: Dict = {
   hero: {
     eyebrow: "Démocratie délibérative · directe · profonde",
     subtitle: "Une infrastructure civique de référence pour la démocratie.",
-    body: "Les démocraties s'érodent tandis que les pouvoirs autoritaires se consolident, et les technologies les plus récentes servent la surveillance et la répression plutôt que l'autonomie. AGORA remet ces mêmes outils entre les mains des communautés : une infrastructure sûre et souveraine, que les citoyens lisent, rédigent et adoptent, sur un serveur qui leur appartient. La démocratie représentative n'a jamais donné au peuple qu'un vote — AGORA propose de lui rendre le vrai pouvoir : celui d'écrire la loi.",
+    body: "Les démocraties s'érodent tandis que les pouvoirs autoritaires se consolident, et les technologies les plus récentes sont détournées au profit de la surveillance et de la répression plutôt que de l'autonomie. Agora rend ces mêmes outils aux communautés — une infrastructure souveraine et sécurisée, grâce à laquelle les citoyens lisent, écrivent et ratifient les normes, sur un serveur qui leur appartient. La démocratie représentative n'a jamais offert au public qu'un droit de vote. Agora propose de donner aux communautés le pouvoir réel : l'écriture de la loi.",
     watchDemo: "Voir la démo",
     request: "Demander AGORA",
   },
@@ -30,7 +30,7 @@ export const fr: Dict = {
       {
         num: "01",
         title: "Comprendre et rédiger",
-        body: "Reformuler tout texte à différents niveaux de lecture, du plus simple au plus juridique. Poser ses questions en langage courant et obtenir des réponses sourcées, fondées sur le texte même. Comparer deux textes côte à côte, avec vérification avant publication de leur conformité au droit applicable.",
+        body: "Reformulez tout texte à différents niveaux de lecture, du plus simple au plus juridique. Posez des questions dans un langage vernaculaire et obtenez des réponses sourcées, fondées sur le droit positif. Comparez deux textes côte à côte, avec vérification avant publication de leur conformité au droit auquel le texte est subordonné.",
       },
       {
         num: "02",
