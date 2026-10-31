@@ -1,26 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
+import type { Dict, FieldSpec, Locale, Persona as PersonaId } from "@/lib/i18n/types";
+import CommuneField from "./CommuneField";
 
-type Persona = "citizen" | "government" | "ngo" | null;
-
-const PERSONAS: { id: Exclude<Persona, null>; label: string; description: string }[] = [
-  {
-    id: "citizen",
-    label: "I'm a Citizen",
-    description: "Request AGORA in your municipality.",
-  },
-  {
-    id: "government",
-    label: "I'm a Government Representative",
-    description: "Request a demo or RFI for your jurisdiction.",
-  },
-  {
-    id: "ngo",
-    label: "I Represent an NGO",
-    description: "Explore how AGORA supports civic and advocacy organizations.",
-  },
-];
+type Persona = PersonaId | null;
 
 function inputStyle(focused: boolean = false): React.CSSProperties {
   return {
@@ -48,208 +32,118 @@ function labelStyle(): React.CSSProperties {
   };
 }
 
-function FieldGroup({
-  label,
-  name,
-  type = "text",
-  placeholder = "",
-  required = false,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  placeholder?: string;
-  required?: boolean;
-}) {
+function Field({ spec, t }: { spec: FieldSpec; t: Dict["join"] }) {
+  const id = useId();
   const [focused, setFocused] = useState(false);
-  return (
-    <div>
-      <label style={labelStyle()}>{label}</label>
-      <input
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        required={required}
-        style={inputStyle(focused)}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-      />
-    </div>
-  );
-}
+  const focus = { onFocus: () => setFocused(true), onBlur: () => setFocused(false) };
 
-function SelectGroup({
-  label,
-  name,
-  options,
-  required = false,
-}: {
-  label: string;
-  name: string;
-  options: string[];
-  required?: boolean;
-}) {
-  const [focused, setFocused] = useState(false);
-  return (
-    <div>
-      <label style={labelStyle()}>{label}</label>
-      <select
-        name={name}
-        required={required}
-        style={{ ...inputStyle(focused), appearance: "none", cursor: "pointer" }}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-      >
-        <option value="">Select one</option>
-        {options.map((o) => (
-          <option key={o} value={o} style={{ background: "#fffdf6" }}>
-            {o}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
-}
-
-function TextAreaGroup({ label, name }: { label: string; name: string }) {
-  const [focused, setFocused] = useState(false);
-  return (
-    <div>
-      <label style={labelStyle()}>{label}</label>
-      <textarea
-        name={name}
-        rows={4}
-        style={{ ...inputStyle(focused), resize: "vertical", minHeight: "100px" }}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-      />
-    </div>
-  );
-}
-
-function CitizenForm() {
-  return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }}>
-      <FieldGroup label="Your Name" name="name" required />
-      <FieldGroup label="Email" name="email" type="email" required />
-      <FieldGroup label="City / Town, State" name="location" placeholder="Cambridge, MA" required />
-      <FieldGroup label="Your Role in the Community (Optional)" name="role" placeholder="resident, town meeting member, association chair…" />
-
-      <div style={{ gridColumn: "1 / -1" }}>
-        <label
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            gap: "0.75rem",
-            cursor: "pointer",
-          }}
-        >
+  switch (spec.kind) {
+    case "text":
+      return (
+        <div style={spec.full ? { gridColumn: "1 / -1" } : undefined}>
+          <label htmlFor={id} style={labelStyle()}>{spec.label}</label>
           <input
-            type="checkbox"
-            name="letter"
-            value="yes"
-            style={{
-              marginTop: "3px",
-              accentColor: "var(--color-gold)",
-              width: "15px",
-              height: "15px",
-              flexShrink: 0,
-            }}
+            id={id}
+            type={spec.type ?? "text"}
+            name={spec.name}
+            placeholder={spec.placeholder}
+            required={spec.required}
+            style={inputStyle(focused)}
+            {...focus}
           />
-          <span
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "0.85rem",
-              color: "var(--color-text)",
-              lineHeight: 1.6,
-              opacity: 0.85,
-            }}
+        </div>
+      );
+    case "select":
+      return (
+        <div>
+          <label htmlFor={id} style={labelStyle()}>{spec.label}</label>
+          <select
+            id={id}
+            name={spec.name}
+            required={spec.required}
+            style={{ ...inputStyle(focused), appearance: "none", cursor: "pointer" }}
+            {...focus}
           >
-            Send an AGORA-drafted letter on my behalf to my select board / city council demanding adoption.
-          </span>
-        </label>
-      </div>
-
-      <div style={{ gridColumn: "1 / -1" }}>
-        <TextAreaGroup label="Message (Optional)" name="message" />
-      </div>
-    </div>
-  );
+            <option value="">{t.selectOne}</option>
+            {spec.options.map((o) => (
+              <option key={o} value={o} style={{ background: "#fffdf6" }}>
+                {o}
+              </option>
+            ))}
+          </select>
+        </div>
+      );
+    case "textarea":
+      return (
+        <div style={{ gridColumn: "1 / -1" }}>
+          <label htmlFor={id} style={labelStyle()}>{spec.label}</label>
+          <textarea
+            id={id}
+            name={spec.name}
+            rows={4}
+            style={{ ...inputStyle(focused), resize: "vertical", minHeight: "100px" }}
+            {...focus}
+          />
+        </div>
+      );
+    case "checkbox":
+      return (
+        <div style={{ gridColumn: "1 / -1" }}>
+          <label style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", cursor: "pointer" }}>
+            <input
+              type="checkbox"
+              name={spec.name}
+              value="yes"
+              required={spec.required}
+              style={{
+                marginTop: "3px",
+                accentColor: "var(--color-gold)",
+                width: "15px",
+                height: "15px",
+                flexShrink: 0,
+              }}
+            />
+            <span
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "0.85rem",
+                color: "var(--color-text)",
+                lineHeight: 1.6,
+                opacity: 0.85,
+              }}
+            >
+              {spec.label}
+            </span>
+          </label>
+        </div>
+      );
+    case "commune":
+      return (
+        <CommuneField
+          name={spec.name}
+          label={spec.label}
+          placeholder={spec.placeholder}
+          required={spec.required}
+          strict={spec.strict}
+          inputStyle={inputStyle}
+          labelStyle={labelStyle()}
+          messages={{ required: t.communeRequired, noResults: t.communeNoResults, searching: t.communeSearching }}
+        />
+      );
+  }
 }
 
-function GovernmentForm() {
-  return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }}>
-      <FieldGroup label="Your Name" name="name" required />
-      <FieldGroup label="Title / Role" name="title" placeholder="Town Manager, Selectboard Chair, IT Director…" required />
-      <FieldGroup label="Municipality / Jurisdiction" name="jurisdiction" placeholder="Town of Concord, MA" required />
-      <SelectGroup
-        label="Population Size"
-        name="population"
-        options={["Under 5,000", "5,000–25,000", "25,000–100,000", "100,000–500,000", "Over 500,000"]}
-      />
-      <SelectGroup
-        label="Government Structure"
-        name="structure"
-        options={[
-          "Town Meeting",
-          "Selectboard",
-          "City Council–Mayor",
-          "City Council–Manager",
-          "County",
-          "State Agency",
-          "University",
-          "Other",
-        ]}
-      />
-      <FieldGroup label="Email" name="email" type="email" required />
-      <FieldGroup label="Phone (Optional)" name="phone" type="tel" />
-      <SelectGroup
-        label="Interest"
-        name="interest"
-        options={["Schedule a demo", "Request a pilot / MOU", "General inquiry"]}
-      />
-      <div style={{ gridColumn: "1 / -1" }}>
-        <TextAreaGroup label="Governance context / message" name="message" />
-      </div>
-    </div>
-  );
-}
-
-function NgoForm() {
-  return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }}>
-      <FieldGroup label="Your Name" name="name" required />
-      <FieldGroup label="Title / Role" name="title" placeholder="Executive Director, Policy Lead…" required />
-      <FieldGroup label="Organization Name" name="organization" required />
-      <SelectGroup
-        label="Organization Type"
-        name="orgtype"
-        options={[
-          "Civic advocacy",
-          "Environmental",
-          "Human rights",
-          "Community organizing",
-          "Academic / research",
-          "International development",
-          "Other",
-        ]}
-      />
-      <FieldGroup label="Email" name="email" type="email" required />
-      <FieldGroup label="Phone (Optional)" name="phone" type="tel" />
-      <SelectGroup
-        label="Interest"
-        name="interest"
-        options={["Pilot", "Partnership", "RFI", "General inquiry"]}
-      />
-      <div style={{ gridColumn: "1 / -1" }}>
-        <TextAreaGroup label="Tell us about your organization and how you'd use AGORA" name="message" />
-      </div>
-    </div>
-  );
-}
-
-export default function ActionHub() {
+export default function ActionHub({
+  t,
+  locale,
+  shareUrl,
+  privacyPath,
+}: {
+  t: Dict["join"];
+  locale: Locale;
+  shareUrl: string;
+  privacyPath: string;
+}) {
   const [persona, setPersona] = useState<Persona>(null);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -274,7 +168,10 @@ export default function ActionHub() {
     setError(null);
 
     const formData = new FormData(e.currentTarget);
-    const fields = Object.fromEntries(formData.entries()) as Record<string, string>;
+    const fields = {
+      ...(Object.fromEntries(formData.entries()) as Record<string, string>),
+      lang: locale,
+    };
 
     try {
       const res = await fetch("/api/contact", {
@@ -283,14 +180,11 @@ export default function ActionHub() {
         body: JSON.stringify({ persona, fields }),
       });
 
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Submission failed. Please try again.");
-      }
-
+      // The route's own error text is English; the visitor sees their language.
+      if (!res.ok) throw new Error();
       setSubmitted(true);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong.");
+    } catch {
+      setError(t.error);
     } finally {
       setLoading(false);
     }
@@ -299,7 +193,7 @@ export default function ActionHub() {
   return (
     <section id="join" className="section" style={{ paddingBottom: "8rem" }}>
       <div style={{ maxWidth: "880px" }}>
-        <p className="section-mark">§ 05 — Request AGORA</p>
+        <p className="section-mark">{t.mark}</p>
 
         <h2
           style={{
@@ -312,7 +206,7 @@ export default function ActionHub() {
             maxWidth: "620px",
           }}
         >
-          Bring AGORA to your community.
+          {t.heading}
         </h2>
 
         <div
@@ -323,7 +217,7 @@ export default function ActionHub() {
             marginBottom: "3rem",
           }}
         >
-          {PERSONAS.map((p) => (
+          {t.personas.map((p) => (
             <button
               key={p.id}
               onClick={() => {
@@ -382,10 +276,15 @@ export default function ActionHub() {
             }}
           >
             <form onSubmit={handleSubmit}>
-              <div style={{ marginBottom: "2rem" }}>
-                {persona === "citizen" && <CitizenForm />}
-                {persona === "government" && <GovernmentForm />}
-                {persona === "ngo" && <NgoForm />}
+              {/* Keyed on persona so switching forms resets their fields. */}
+              <div
+                key={persona}
+                className="form-grid"
+                style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem", marginBottom: "2rem" }}
+              >
+                {t.forms[persona].map((spec) => (
+                  <Field key={spec.name} spec={spec} t={t} />
+                ))}
               </div>
 
               <div>
@@ -418,7 +317,7 @@ export default function ActionHub() {
                     el.style.transform = "translateY(0)";
                   }}
                 >
-                  {loading ? "Sending…" : "Submit"}
+                  {loading ? t.sending : t.submit}
                 </button>
 
                 {error && (
@@ -468,7 +367,7 @@ export default function ActionHub() {
                 marginBottom: "0.75rem",
               }}
             >
-              Your voice is on the record.
+              {t.successHeading}
             </h3>
             <p
               style={{
@@ -479,12 +378,12 @@ export default function ActionHub() {
                 marginBottom: "1.75rem",
               }}
             >
-              Combat the concentration of power. Injustice anywhere is a threat to justice everywhere — share this link to bring your friends and community onboard.
+              {t.successBody}
             </p>
             <button
               type="button"
               onClick={() => {
-                navigator.clipboard.writeText("https://agora.direct-democracy.dev");
+                navigator.clipboard.writeText(shareUrl);
                 setLinkCopied(true);
                 setTimeout(() => setLinkCopied(false), 2000);
               }}
@@ -499,7 +398,7 @@ export default function ActionHub() {
                 cursor: "pointer",
               }}
             >
-              {linkCopied ? "Link copied" : "Copy share link"}
+              {linkCopied ? t.linkCopied : t.copyLink}
             </button>
           </div>
         )}
@@ -510,11 +409,14 @@ export default function ActionHub() {
             fontSize: "0.75rem",
             color: "var(--color-muted)",
             marginTop: "2rem",
-            opacity: 0.5,
+            opacity: 0.85,
             lineHeight: 1.6,
           }}
         >
-          Your information is never shared or sold. AGORA is a sovereign, privacy-first organization.
+          {t.privacyNotice}{" "}
+          <a href={privacyPath} style={{ color: "inherit" }}>
+            {t.privacyLinkText}
+          </a>
         </p>
       </div>
     </section>
