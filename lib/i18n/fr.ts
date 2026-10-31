@@ -44,7 +44,7 @@ export const fr: Dict = {
       },
     ],
     footnote:
-      "Déploiement local et souverain — toutes les données civiques restent dans la base de données de la collectivité. Inférence locale via Ollama, avec un mode hybride optionnel via l'API Claude.",
+      "Déploiement souverain — toutes les données civiques restent dans la base de données de la collectivité, et chaque réponse de l'IA vient d'un modèle ouvert qui tourne sur notre propre serveur GPU ou sur celui de la collectivité. Ni Anthropic, ni OpenAI : aucune dépendance envers les grandes entreprises d'IA.",
   },
   demo: {
     mark: "§ 03 — En action",

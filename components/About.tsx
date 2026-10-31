@@ -102,7 +102,7 @@ export default function About() {
             The sole valid objection to direct democracy is that it is unwieldy — that participatory decision-making is too slow to compete with representative or authoritarian alternatives. AGORA is built to answer that objection. By making structured deliberation efficient and policy legible at every reading level, and by allowing organizations to nest such that decisions and legal inheritance flow cleanly between scales of governance, AGORA eliminates the operational deficiency that has historically made direct democracy impractical at scale.
           </p>
           <p style={{ marginBottom: "1.5rem" }}>
-            We deploy on a single municipal server running on commodity hardware. In sovereign mode, all language-model inference runs locally via Ollama; no citizen data, deliberation content, or query traffic leaves the municipality. The local-inference posture also avoids the carbon footprint of cloud-scale LLM serving — gold-standard infrastructure with zero-extraction ecological responsibility.
+            We deploy on a single server with a GPU, ours or the municipality&apos;s. All language-model inference runs there, on open models; no citizen data, deliberation content, or query traffic goes to Anthropic, OpenAI or any other AI company. The local-inference posture also avoids the carbon footprint of cloud-scale LLM serving — gold-standard infrastructure with zero-extraction ecological responsibility.
           </p>
           <p>
             AGORA is a small team bootstrapping toward our first round of municipal contracts in New England in 2026. The cause is urgent. We are building the tools.

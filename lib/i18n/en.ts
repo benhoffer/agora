@@ -44,7 +44,7 @@ export const en: Dict = {
       },
     ],
     footnote:
-      "Sovereign local deployment — all civic data stays in the municipality's own database. Local LLM inference via Ollama, with an optional Claude API hybrid mode.",
+      "Sovereign deployment — all civic data stays in the municipality's own database, and every AI answer comes from an open model running on our own GPU server or the town's. No Anthropic, no OpenAI: no dependence on any big AI company.",
   },
   demo: {
     mark: "§ 03 — In Action",
